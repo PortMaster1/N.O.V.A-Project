@@ -1,4 +1,4 @@
-from transformers import AdapterTrainer, AutoModelForCausalLM, TrainingArguments, Trainer
+from transformers import AdapterTrainer, AutoModelForCausalLM, TrainingArguments, Trainer, AutoTokenizer
 from datasets import load_dataset
 from peft import LoraConfig, get_peft_model, TaskType
 
@@ -10,8 +10,6 @@ def format_prompt(example):
     }
 
 dataset = dataset.map(format_prompt)
-
-from transformers import AutoTokenizer, AutoModelForCausalLM
 
 model_id = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -52,4 +50,4 @@ trainer = Trainer(
 )
 
 trainer.train()
-model.save_pretrained("./nova-memory-adapter")
+model.save_pretrained("./nova-emotion-adapter")
