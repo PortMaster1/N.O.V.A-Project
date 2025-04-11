@@ -8,7 +8,7 @@ def main_loop():
     user_input = listen()
     match = re.search('sleep nova', user_input.lower())
     if match:
-        rest.rest()
+        rest.sleep_cycle()
     response = get_response(user_input)
     match = re.search(r'\[ACTION: (.*?)\]', response)
     if match:
