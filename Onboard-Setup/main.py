@@ -2,10 +2,13 @@ from llm_system import get_response
 from sensors import listen, speak
 import re
 from memory_lane import remember, forget
-
+import rest
 
 def main_loop():
     user_input = listen()
+    match = re.search('sleep nova', user_input.lower())
+    if match:
+        rest.rest()
     response = get_response(user_input)
     match = re.search(r'\[ACTION: (.*?)\]', response)
     if match:
