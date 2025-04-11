@@ -1,4 +1,4 @@
-import os
+import os, serial
 from faster_whisper import WhisperModel
 import sounddevice as sd
 from scipy.io.wavfile import write
@@ -32,3 +32,17 @@ def talk_to_server(message):
     response = requests.post(SERVER_URL, json={"message": message})
     return response.json()["response"]
 
+# Adjust this port to match yours (likely /dev/ttyACM0 or /dev/ttyUSB0)
+ser = serial.Serial('/dev/ttyACM0', 115200)
+
+def read_microbit():
+    while True:
+        line = ser.readline().decode().strip()
+        if line:
+            try:
+                x, y, z, tilt = line.split(",")
+                x, y, z = int(x), int(y), int(z)
+                print(f"Accel: x={x}, y={y}, z={z}, Tilt: {tilt}")
+                return x, y, z, tilt
+            except:
+                print("NO RESPONSE FROM SERIAL INTERFACE")
