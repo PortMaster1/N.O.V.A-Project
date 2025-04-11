@@ -3,7 +3,6 @@ from memory_lane import load_memory
 from llm_system import get_response
 from sensors import listen
 import re
-from main import awake
 
 def rest():
     pass
@@ -34,9 +33,12 @@ def sleep_cycle():
     memory = load_memory()
     reflection = generate_reflection(memory)
     save_reflection(reflection)
-    match = re.search('wake up', listen().lower())
-    if match:
-        awake()
+    while True:
+        match = re.search('wake up', listen().lower())
+        if match:
+            return "awake"
+            break
+        time.sleep(5)
 
 if __name__ == "__main__":
     sleep_cycle()
