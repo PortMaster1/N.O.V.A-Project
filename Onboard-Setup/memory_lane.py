@@ -1,4 +1,5 @@
-import json, os, time
+import json, os
+from datetime import datetime
 
 # Basic memory storage
 memory_file = "nova_memory.json"
@@ -26,7 +27,7 @@ def retrieve_memory(key):
 # Run Functions for LLM
 
 def remember(text):
-    now = time.now().is_format()
+    now = datetime.date.today().isoformat(
     update_memory(text, now)
 
 def forget(text):
