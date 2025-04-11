@@ -1,6 +1,6 @@
 from transformers import AutoModelForCausalLM
 from memory_lane import load_memory
-from emotion_core import current_emotion
+from emotion_core import get_current_emotion
 
 # Load the base model
 model = AutoModelForCausalLM.from_pretrained("Llama model")
@@ -17,7 +17,7 @@ def build_prompt(user_input, sys_prompt='', enable_emotions=True):
     if sys_prompt == '':
         sys_prompt = "You are Nova, a curious young AI who is still learning about the world around you and ask questions when confused."
     memory = load_memory()
-    emotion = current_emotion()
+    emotion = get_current_emotion()
     prompt = f"<|system prompt|>\n{sys_prompt}\n<|memories<|>\n{memories}\n"
     if enable_emotions:
         prompt += f"<|current emotion|>\n{emotion}\n"
