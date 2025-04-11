@@ -1,5 +1,6 @@
 import time, json, os, random
 from memory_lane import load_memory
+from llm_system import get_response
 
 def rest():
     pass
@@ -19,31 +20,11 @@ def save_reflection(text):
         f.write(text)
     print(f"Saved reflection to {filename}")
 
-# Fake LLM behavior for now (placeholder for real AI)
+
 def generate_reflection(memory):
-    if not memory:
-        return "Today was quiet. I didn’t learn anything new. Maybe tomorrow will be different."
-
-    thoughts = []
-    thoughts.append("Today I experienced:")
-    for event in memory[-5:]:  # summarize last 5 moments
-        thoughts.append(f" - {event.get('summary', '...')}")
-
-    emotions = set(e.get("emotion", "neutral") for e in memory)
-    thoughts.append("\nI felt:")
-    for e in emotions:
-        thoughts.append(f" - {e}")
-
-    learnings = [e.get("lesson") for e in memory if "lesson" in e]
-    if learnings:
-        thoughts.append("\nI think I learned:")
-        for l in learnings:
-            thoughts.append(f" - {l}")
-    else:
-        thoughts.append("\nI’m still figuring things out. Maybe tomorrow I’ll understand more.")
-
-    thoughts.append(f"\nGoodnight. I’m going to rest now.\n")
-    return "\n".join(thoughts)
+    sys_prompt = "You are Nova. You are writing in your nightly journal. Be yourself."
+    text = "Reflect on the day. What did you learn about emotions like joy, sadness, or curiosity? Does you feel any different now? Write about what you did and what you didn't get to do. Write about what you wanted to do, and what you think about the world around you."
+    get_response(sys_prompt=sys_prompt, user_input=text)
 
 # Run Nova's "sleep mode"
 def sleep_cycle():
