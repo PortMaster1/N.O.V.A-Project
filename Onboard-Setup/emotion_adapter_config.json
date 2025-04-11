@@ -1,0 +1,12 @@
+{
+  "adapter_size": 128,
+  "adapter_activation_function": "gelu",
+  "adapter_layers": 2,
+  "task_specific": {
+    "emotion": {
+      "emotion_labels": ["happy", "sad", "angry", "surprised", "neutral"],
+      "emotion_weights": [1.0, 1.0, 0.8, 1.2, 1.0]
+    }
+  },
+  "model_name": "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+}
