@@ -9,8 +9,8 @@ The onboard setup is currently supported on the following:
 
 1. Download and extract or Git-clone this repo to your Jetzon Orin NX or Orin Nano
 2. cd into this folder in a terminal
-3. Run 'pip install -r requirements.txt' to install dependencies
-4. Run 'python3 main.py'
+3. Run `pip install -r requirements.txt` to install dependencies
+4. Run `python3 main.py`
 
 ### If using a bluetooth speaker:
 #### Step 1: Setup Bluetooth on your device
