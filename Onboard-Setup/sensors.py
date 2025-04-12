@@ -12,6 +12,7 @@ tts_model = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC", progress_bar=
 def listen():
     fs = 16000  # Whisper likes 16kHz mono
     seconds = 5
+    print("Listening...")
     recording = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
     sd.wait()
     write("audio.wav", fs, recording)
@@ -25,12 +26,6 @@ def speak_response(response_text, filename="response.wav"):
     print(f"[NOVA] {response_text}")
     tts_model.tts_to_file(text=response_text, file_path=filename)
     os.system(f"aplay {filename}" if os.name != 'nt' else f"start {filename}")
-
-
-# Talk to server
-def talk_to_server(message):
-    response = requests.post(SERVER_URL, json={"message": message})
-    return response.json()["response"]
 
 # Adjust this port to match yours (likely /dev/ttyACM0 or /dev/ttyUSB0)
 ser = serial.Serial('/dev/ttyACM0', 115200)
