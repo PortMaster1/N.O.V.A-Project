@@ -2,6 +2,9 @@
 The N.O.V.A. Project is a project about making a handheld robot that has a large neural network.
 It will use the TinyLLama 1.1B LLM from Huggingface.
 
+> [!IMPORTANT]
+> This repository is not fully complete and is stil in development.
+> Run at your own risk!
 
 There will be two different setups for this project:
 1. **Server Setup**
