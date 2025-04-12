@@ -28,14 +28,16 @@ def generate_reflection(memory):
 # Run Nova's "sleep mode"
 def sleep_cycle():
     memory = load_memory()
-    reflection = generate_reflection(memory)
-    save_reflection(reflection)
+    if not os.path.exists(f"{REFLECTIONS_FOLDER}/Nova_Journal_{date_str}.md"):
+        reflection = generate_reflection(memory)
+        save_reflection(reflection)
     while True:
         match = re.search('wake up', listen().lower())
         if match:
             return "awake"
             break
         time.sleep(5)
+        primt("Sleeping..."
 
 if __name__ == "__main__":
     sleep_cycle()
