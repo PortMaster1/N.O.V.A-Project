@@ -1,6 +1,6 @@
 import json
 import os
-from datetime import datetime
+import datetime
 
 EMOTION_PATH = "nova_emotions.json"
 
