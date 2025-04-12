@@ -7,7 +7,7 @@ import rest
 def main_loop():
     while True:
         user_input = listen()
-        match = re.search('sleep nova', user_input.lower())
+        match = re.search('sleep', user_input.lower())
         if match:
             rest.sleep_cycle()
         response = get_response(user_input)
