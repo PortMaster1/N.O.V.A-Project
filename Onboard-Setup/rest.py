@@ -4,9 +4,6 @@ from llm_system import get_response
 from sensors import listen
 import re
 
-def rest():
-    pass
-
 # Path where memory and reflections are saved
 MEMORY_PATH = "memory.json"
 REFLECTIONS_FOLDER = "Nova-Journal"
