@@ -41,7 +41,7 @@ Once the bluetooth device is connected:
 pactl list sources short
 pactl list sinks short
 ```
-    - You should see your Bluetooth speaker as a **sink** and the microphone as a **source** (might be named something like 'bluez_source...' and 'bluez_sink...').
+- You should see your Bluetooth speaker as a **sink** and the microphone as a **source** (might be named something like 'bluez_source...' and 'bluez_sink...').
 Setup the default audio source and sink:
 ```bash
 pactl set-default-sink <BT_SPEAKER_NAME>
