@@ -1,0 +1,16 @@
+pydantic
+pyaudio
+pyserial
+gpiozero
+luma.oled
+pillow
+transformers
+datasets
+peft
+accelerate
+bitsandbyte
+adapter-transformers
+faster-whisper
+torch
+scipy
+re
