@@ -6,7 +6,7 @@ The onboard setup is currently supported on the following:
 - Jetson Orin NX (16GB RAM)
 
 # Installation
-## Git Clone
-{I haven't worked on this just yet}
-## Manual Installation
-{I haven't worked on this just yet}
+
+1. Download and extract or Git-clone this repo to your computer.
+2. Open the downloaded / cloned repository in a File Explorer.
+3. Choose the desired setup method
