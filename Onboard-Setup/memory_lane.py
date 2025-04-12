@@ -26,7 +26,7 @@ def retrieve_memory(key):
 # Run Functions for LLM
 
 def remember(text):
-    now = datetime.date.today().isoformat(
+    now = datetime.date.today().isoformat()
     update_memory(text, now)
 
 def forget(text):

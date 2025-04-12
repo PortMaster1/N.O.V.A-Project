@@ -22,7 +22,7 @@ def build_prompt(user_input, sys_prompt='', enable_emotions=True):
     if enable_emotions:
         prompt += f"<|current emotion|>\n{emotion}\n"
     prompt += f"<|user|>\n{user_input}\n<|nova|>"
-    rerurn prompt
+    return prompt
 
 def get_response(input_text, prompt=''):
     if prompt == '':
