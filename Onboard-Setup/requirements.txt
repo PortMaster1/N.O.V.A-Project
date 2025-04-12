@@ -14,3 +14,10 @@ faster-whisper
 torch
 scipy
 re
+json
+os
+time
+datetime
+random
+sounddevice
+TTS
