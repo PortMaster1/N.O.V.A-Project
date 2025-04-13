@@ -21,3 +21,4 @@ datetime
 random
 sounddevice
 TTS
+ultralytics
