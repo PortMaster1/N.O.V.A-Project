@@ -3,7 +3,7 @@ from memory_lane import load_memory
 from emotion_core import get_current_emotion
 
 # Load the base model
-model = AutoModelForCausalLM.from_pretrained("Llama model")
+model = AutoModelForCausalLM.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
 
 # Add multiple adapters for different tasks
 model.add_adapter("emotion_adapter", config="emotion_adapter_config.json")
