@@ -2,6 +2,8 @@ from transformers import AutoModelForCausalLM
 from memory_lane import load_memory
 from emotion_core import get_current_emotion
 
+conversation_memory = []
+
 # Load the base model
 model = AutoModelForCausalLM.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
 
