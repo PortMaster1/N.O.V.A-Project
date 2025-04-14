@@ -1,6 +1,6 @@
-from memory_lane import load_memory
-from emotion_core import get_current_emotion
-from ollama import AsyncClient
+from memory_lane import load_memory, update_memory
+from emotion_core import get_current_emotion, update_emotions
+from ollama import AsyncClient, ChatResponse
 import asyncio
 
 
@@ -8,13 +8,16 @@ cMemory = []
 
 # TODO: FINISH
 # Add multiple adapters for different tasks
-model.add_adapter("emotion_adapter", config="emotion_adapter_config.json")
-model.add_adapter("memory_adapter", config="memory_adapter_config.json")
+add_adapter("emotion_adapter", config="emotion_adapter_config.json")
 
 # TODO: FINISH
 # Activate both emotion and memory adapters
-model.set_active_adapters(["emotion_adapter", "memory_adapter"])
+run adapter
 
+available_functions = {
+  'update_memory': update_memory,
+  'update_emotions': update_emotions,
+}
 
 async def build_prompt(user_input, sys_prompt='', enable_emotions=True):
     if sys_prompt == '':
@@ -33,9 +36,20 @@ async def get_response(input_text, prompt=''):
         prompt = await build_prompt(input_text)
     inputs = input_text
     cMemoey.append(f”{{‘role’: ‘user’, ‘content’: ‘{user_input}’}},\n”)
-    output = await client.char('llama3.2', messages=cMemory)
+    output = await client.char('llama3.2', messages=cMemory, tools=[update_memory, update_emotions])
     print(output.message.content)
     cMemory.append(f”{{‘role’: ‘assistant’, ‘content’: ‘{output.message.content}’}},/n”)
+    if response.message.tool_calls:
+      # There may be multiple tool calls in the response
+      for tool in response.message.tool_calls:
+    # Ensure the function is available, and then call it
+    if function_to_call := available_functions.get(tool.function.name):
+      print('Calling function:', tool.function.name)
+      print('Arguments:', tool.function.arguments)
+      output = function_to_call(**tool.function.arguments)
+      print('Function output:', output)
+    else:
+      print('Function', tool.function.name, 'not found')
     return output.message.content
 
 
