@@ -1,19 +1,19 @@
-import json, os, datetime
+import json, os, datetime, asyncio
 
 # Basic memory storage
 memory_file = "nova_memory.json"
 
-def load_memory():
+async def load_memory():
     if os.path.exists(memory_file):
         with open(memory_file, "r") as f:
             return json.load(f)
     return {}
 
-def save_memory(memory):
+async def save_memory(memory):
     with open(memory_file, "w") as f:
         json.dump(memory, f)
 
-def update_memory(key: str, value: str):
+async def update_memory(key: str, value: str):
       """
       Updates Nova's long-term memory
     
