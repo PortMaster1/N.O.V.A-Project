@@ -6,6 +6,8 @@ The onboard setup is currently supported on the following:
 
 This model is planned to be split between two Jetson devices, one being the main files, and the other running the `eye_eye_captain/` folder.
 
+Ollama models are kept at `/usr/share/ollama/.ollama/models`.
+
 # Installation
 
 1. Download and extract or Git-clone this repo to your Jetzon Orin NX or Orin Nano
