@@ -17,6 +17,8 @@ run adapter
 available_functions = {
   'update_memory': update_memory,
   'update_emotions': update_emotions,
+  'remember': remember,
+  'forget': forget
 }
 
 async def build_prompt(user_input, sys_prompt='', enable_emotions=True):
@@ -36,21 +38,24 @@ async def get_response(input_text, prompt=''):
         prompt = await build_prompt(input_text)
     inputs = input_text
     cMemoey.append(f”{{‘role’: ‘user’, ‘content’: ‘{user_input}’}},\n”)
-    output = await client.char('llama3.2', messages=cMemory, tools=[update_memory, update_emotions])
-    print(output.message.content)
-    cMemory.append(f”{{‘role’: ‘assistant’, ‘content’: ‘{output.message.content}’}},/n”)
+    response = await client.char('llama3.2', messages=cMemory, tools=[update_memory, update_emotions, remember, forget])
+    print(response.message.content)
+    cMemory.append(f”{{‘role’: ‘assistant’, ‘content’: ‘{response.message.content}’}},/n”)
     if response.message.tool_calls:
       # There may be multiple tool calls in the response
       for tool in response.message.tool_calls:
-    # Ensure the function is available, and then call it
-    if function_to_call := available_functions.get(tool.function.name):
-      print('Calling function:', tool.function.name)
-      print('Arguments:', tool.function.arguments)
-      output = function_to_call(**tool.function.arguments)
-      print('Function output:', output)
-    else:
-      print('Function', tool.function.name, 'not found')
-    return output.message.content
+        # Ensure the function is available, and then call it
+        if function_to_call := available_functions.get(tool.function.name):
+          print('Calling function:', tool.function.name)
+          print('Arguments:', tool.function.arguments)
+          output = function_to_call(**tool.function.arguments)
+          print('Function output:', output)
+          # Add the function response to messages for the model to use
+          messages.append(response.message)
+          messages.append({'role': 'tool', 'content': str(output), 'name': tool.function.name})
+        else:
+          print('Function', tool.function.name, 'not found')
+    return response.message.content
 
 
 if __name__ == '__main__':
