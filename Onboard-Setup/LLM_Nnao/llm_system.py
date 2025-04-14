@@ -30,10 +30,10 @@ async def build_prompt(user_input, sys_prompt='', enable_emotions=True):
 async def get_response(input_text, prompt=''):
     client = AsyncClient()
     if prompt == '':
-        prompt = build_prompt(input_text)
+        prompt = await build_prompt(input_text)
     inputs = input_text
     cMemoey.append(f”{{‘role’: ‘user’, ‘content’: ‘{user_input}’}},\n”)
-    output = client.char('llama3.2', messages=cMemory)
+    output = await client.char('llama3.2', messages=cMemory)
     print(output.message.content)
     cMemory.append(f”{{‘role’: ‘assistant’, ‘content’: ‘{output.message.content}’}},/n”)
     return output.message.content
