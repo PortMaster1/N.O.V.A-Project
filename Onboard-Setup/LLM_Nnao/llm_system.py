@@ -1,6 +1,7 @@
 from transformers import AutoModelForCausalLM
 from memory_lane import load_memory
 from emotion_core import get_current_emotion
+import multiprocessing
 
 conversation_memory = []
 
