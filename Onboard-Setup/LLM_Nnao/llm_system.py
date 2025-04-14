@@ -1,22 +1,22 @@
-from transformers import AutoModelForCausalLM
 from memory_lane import load_memory
 from emotion_core import get_current_emotion
-import multiprocessing
+from ollama import AsyncClient
+import asyncio
 
-conversation_memory = []
 
-# Load the base model
-model = AutoModelForCausalLM.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
+cMemory = []
 
+# TODO: FINISH
 # Add multiple adapters for different tasks
 model.add_adapter("emotion_adapter", config="emotion_adapter_config.json")
 model.add_adapter("memory_adapter", config="memory_adapter_config.json")
 
+# TODO: FINISH
 # Activate both emotion and memory adapters
 model.set_active_adapters(["emotion_adapter", "memory_adapter"])
 
 
-def build_prompt(user_input, sys_prompt='', enable_emotions=True):
+async def build_prompt(user_input, sys_prompt='', enable_emotions=True):
     if sys_prompt == '':
         sys_prompt = "You are Nova, a curious young AI who is still learning about the world around you and ask questions when confused."
     memory = load_memory()
@@ -27,12 +27,20 @@ def build_prompt(user_input, sys_prompt='', enable_emotions=True):
     prompt += f"<|user|>\n{user_input}\n<|nova|>"
     return prompt
 
-def get_response(input_text, prompt=''):
+async def get_response(input_text, prompt=''):
+    client = AsyncClient()
     if prompt == '':
         prompt = build_prompt(input_text)
-    inputs = tokenizer(input_text, return_tensors="pt")
-    output = model.generate(**inputs)
+    inputs = input_text
+    cMemoey.append(f”{{‘role’: ‘user’, ‘content’: ‘{user_input}’}},\n”)
+    output = client.char('llama3.2', messages=cMemory)
+    print(output.message.content)
+    cMemory.append(f”{{‘role’: ‘assistant’, ‘content’: ‘{output.message.content}’}},/n”)
+    return output.message.content
 
-    # Decode and print the output
-    decoded_output = tokenizer.decode(output[0], skip_special_tokens=True)
-    print(decoded_output)
+
+if __name__ == '__main__':
+    try:
+        while True:
+            await input_text = input(" You say:"
+            asyncio.run(get_response(input_text))
