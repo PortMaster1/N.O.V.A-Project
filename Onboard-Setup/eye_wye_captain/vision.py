@@ -6,7 +6,6 @@ from deepface import DeepFace
 import numpy as np
 import requests
 import insightface
-import cv2
 
 
 # Globals
