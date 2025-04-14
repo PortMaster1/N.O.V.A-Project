@@ -44,3 +44,5 @@ if __name__ == '__main__':
         while True:
             await input_text = input(" You say:"
             asyncio.run(get_response(input_text))
+    except KeyboardInterrupt:
+        print("Goodbye!")
