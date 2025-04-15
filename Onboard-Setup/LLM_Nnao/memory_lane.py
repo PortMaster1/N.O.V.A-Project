@@ -15,7 +15,7 @@ async def save_memory(memory):
 
 async def update_memory(key: str, value: str):
       """
-      Updates Nova's long-term memory
+      Updates Nova's long-term memory. Use this if you want to store something in memory.
     
       Args:
     key (str): The memory you want to remember. Example: "User likes cheese" or "User likes bananas".
@@ -47,7 +47,7 @@ async def remember(key="" value="") -> str:
     value (str): The date the memory was stored in the format: "DD/MM/YYYY HH:MM"
 
   Returns:
-    either the date in the format "DD/MM/YYYY HH:MM" or the memory retrieved in a string format.
+    Either the date in the format "DD/MM/YYYY HH:MM" or the memory retrieved in a string format.
   """
     memory = load_memory()
     if not key == "":
