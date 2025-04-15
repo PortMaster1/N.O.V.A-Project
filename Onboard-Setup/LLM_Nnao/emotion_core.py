@@ -5,11 +5,7 @@ EMOTION_PATH = "nova_emotions.json"
 # Load emotions from file
 async def load_emotions():
     if not os.path.exists(EMOTION_PATH):
-        return {
-            "current": "neutral",
-            "history": [],
-            "triggers": {}
-        }
+        return {}
     with open(EMOTION_PATH, "r") as f:
         return json.load(f)
 
