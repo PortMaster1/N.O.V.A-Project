@@ -1,11 +1,9 @@
-import json
-import os
-import datetime
+import json, os, datetime, asyncio
 
 EMOTION_PATH = "nova_emotions.json"
 
 # Load emotions from file
-def load_emotions():
+async def load_emotions():
     if not os.path.exists(EMOTION_PATH):
         return {
             "current": "neutral",
@@ -16,12 +14,12 @@ def load_emotions():
         return json.load(f)
 
 # Save emotion state
-def save_emotions(data):
+async def save_emotions(data):
     with open(EMOTION_PATH, "w") as f:
         json.dump(data, f, indent=2)
 
 # Update based on a trigger or event
-def update_emotion(trigger, reason=""):
+async def update_emotion(trigger, reason=""):
     data = load_emotions()
     new_emotion = data["triggers"].get(trigger)
 
@@ -38,12 +36,12 @@ def update_emotion(trigger, reason=""):
         print(f"No emotion trigger found for: {trigger}")
 
 # Optional: register new triggers dynamically
-def add_emotion_trigger(trigger, emotion):
+async def add_emotion_trigger(trigger, emotion):
     data = load_emotions()
     data["triggers"][trigger] = emotion
     save_emotions(data)
     print(f"Added trigger: '{trigger}' → '{emotion}'")
 
 # Example: get how Nova feels
-def get_current_emotion():
+async def get_current_emotion():
     return load_emotions().get("current", "neutral")
