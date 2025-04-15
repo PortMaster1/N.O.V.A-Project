@@ -1,6 +1,6 @@
 from memory_lane import load_memory, update_memory
 from emotion_core import get_current_emotion, update_emotions
-from ollama import AsyncClient, ChatResponse
+from ollama import chat, ChatResponse
 import asyncio
 
 
@@ -33,12 +33,11 @@ async def build_prompt(user_input, sys_prompt='', enable_emotions=True):
     return prompt
 
 async def get_response(input_text, prompt=''):
-    client = AsyncClient()
     if prompt == '':
         prompt = await build_prompt(input_text)
     inputs = input_text
     cMemoey.append(f”{{‘role’: ‘user’, ‘content’: ‘{user_input}’}},\n”)
-    response = await client.char('llama3.2', messages=cMemory, tools=[update_memory, update_emotions, remember, forget])
+    response = await chat('llama3.2', messages=cMemory, tools=[update_memory, update_emotions, remember, forget])
     print(response.message.content)
     cMemory.append(f”{{‘role’: ‘assistant’, ‘content’: ‘{response.message.content}’}},/n”)
     if response.message.tool_calls:

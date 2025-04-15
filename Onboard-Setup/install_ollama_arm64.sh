@@ -24,6 +24,7 @@ Group=ollama
 Restart=always
 RestartSec=3
 Environment="PATH=$PATH"
+Environment="OLLAMA_KEEP_ALIVE=-1"
 
 [Install]
 WantedBy=multi-user.target
