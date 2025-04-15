@@ -10,10 +10,23 @@ Ollama models are kept at `/usr/share/ollama/.ollama/models`.
 
 # Installation
 
-1. Download and extract or Git-clone this repo to your Jetzon Orin NX or Orin Nano
-2. cd into this folder in a terminal
-3. Run `pip install -r requirements.txt` to install dependencies
-4. Run `python3 main.py`
+### For the LLM-running Orin Nano:
+1. Download Docker and setup a container on your NVIDIA Jetson Orin Nano (Make sure to not use the auto-delete feature when you run it!)
+2. Download and extract or Git-clone this repo in the container
+3. `cd` into this folder
+4. Run `./install_ollama_arm64.sh` to install and start ollama (This adds it as a startup service, so you don’t have to start ollama after running this)
+5. Wire the Orin Nano up
+
+### For the Vision model-running Orin Nano:
+1. Download Docker and setup a container on your NVIDIA Jetson Orin Nano (Make sure to not use the auto-delete feature when you run it!)
+2. Download and extract or Git-clone this repo in the container
+3. `cd` into this folder
+4. Run `./install_vision_arm64.sh` to install and start the vision model
+5. Wire the Orin Nano up
+
+### For both (After previous configuration and wiring):
+1. `cd` into the proper folders (`LLM_Nano` for the LLM-running Orin Nano, and `Vision_Nano` for the other)
+2. Run `python3 main.py`
 
 ### If using a bluetooth speaker:
 #### Step 1: Setup Bluetooth on your device
