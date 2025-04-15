@@ -4,7 +4,7 @@ The Onboard setup for Nova means that everything is handled by one computer insi
 The onboard setup is currently supported on the following:
 - Jetson Orin Nano (8GB RAM)
 
-This model is planned to be split between two Jetson devices, one runnibg the `LLM_Nano` folder, and the other running the `Vision_Nano` folder.
+This model is planned to be split between two Jetson devices, one running the `LLM_Nano` folder, and the other running the `Vision_Nano` folder.
 
 Ollama models are kept at `/usr/share/ollama/.ollama/models`.
 
