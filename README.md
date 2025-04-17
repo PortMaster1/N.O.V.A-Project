@@ -1,6 +1,6 @@
 # N.O.V.A-Project
 The N.O.V.A. Project is a project about making a handheld robot that has a large neural network.
-It will use llama3.2 1B from Meta by use of [https://github.com/ollama/ollama](Ollama.)
+It will use llama3.2 1B from Meta by use of [Ollama](https://github.com/ollama/ollama).
 
 > [!IMPORTANT]
 > This repository is not fully complete and is stil in development.
