@@ -1,4 +1,4 @@
-import threading
+import asyncio
 import cv2
 import time
 from ultralytics import YOLO
@@ -37,7 +37,7 @@ SERVER_URL = "http://your-nova-brain-ip:8000/api/input"
 # Motion Detector Setup
 bg_subtractor = cv2.createBackgroundSubtractorMOG2()
 
-def object_detection_thread(camera_index=0):
+async def object_detection_thread(camera_index=0):
     cap = cv2.VideoCapture(camera_index)
 
     while True:
@@ -58,9 +58,9 @@ def object_detection_thread(camera_index=0):
             detected_faces.clear()
             detected_faces.extend(people)
 
-        time.sleep(0.1)
+        asyncio.sleep(0.1)
 
-def motion_tracking_thread(camera_index=0):
+async def motion_tracking_thread(camera_index=0):
     cap = cv2.VideoCapture(camera_index)
     while True:
         ret, frame = cap.read()
@@ -70,9 +70,9 @@ def motion_tracking_thread(camera_index=0):
         motion_area = np.sum(motion_mask > 0)
         if motion_area > 5000:  # Tune this threshold
             print("[Motion] Movement Detected")
-        time.sleep(0.2)
+        asyncio.sleep(0.2)
 
-def face_analysis_thread():
+async def face_analysis_thread():
     while True:
         with frame_lock:
             faces = detected_faces.copy()
@@ -98,9 +98,9 @@ def face_analysis_thread():
             except Exception as e:
                 print("[DeepFace] Error:", e)
 
-        time.sleep(1)  # Run at most once per second
+        asyncio.sleep(1)  # Run at most once per second
 
-def send_results_thread():
+async def send_results_thread():
     while True:
         with result_lock:
             data = latest_results.copy()
@@ -110,14 +110,14 @@ def send_results_thread():
                 print("[Send] Data sent:", data)
             except Exception as e:
                 print("[Send] Error:", e)
-        time.sleep(1)
+        asyncio.sleep(1)
 
 # Launch threads
-threading.Thread(target=object_detection_thread, daemon=True).start()
-threading.Thread(target=motion_tracking_thread, daemon=True).start()
-threading.Thread(target=face_analysis_thread, daemon=True).start()
-threading.Thread(target=send_results_thread, daemon=True).start()
+asyncio.run(target=object_detection_thread)
+asyncio.run(target=motion_tracking_thread)
+asyncio.run(target=face_analysis_thread)
+asyncio.run(target=send_results_thread)
 
 # Keep the main thread alive
 while True:
-    time.sleep(10)
+    asyncio.sleep(10)
