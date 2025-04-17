@@ -12,8 +12,8 @@ Ollama models are kept at `/usr/share/ollama/.ollama/models`.
 
 ### For the LLM-running Orin Nano:
 1. Download Docker and setup a container on your NVIDIA Jetson Orin Nano (Make sure to not use the auto-delete feature when you run it!)
-2. Download and extract or Git-clone this repo in the container
-3. `cd` into this folder
+2. Run `git clone https://github.com/PortMaster1/N.O.V.A-Project.git` in the container or download this repository in your container.
+3. Run `cd Onboard-Setup/`
 4. Run `./install_ollama_arm64.sh` to install and start ollama (This adds it as a startup service, so you don’t have to start ollama after running this)
 5. Wire the Orin Nano up
 
