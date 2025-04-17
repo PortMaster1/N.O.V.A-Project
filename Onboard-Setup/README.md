@@ -10,6 +10,8 @@ Ollama models are kept at `/usr/share/ollama/.ollama/models`.
 
 # Installation
 
+Make sure to install support for CUDA GPU here: [download here](https://developer.nvidia.com/cuda-downloads)
+
 ### For the LLM-running Orin Nano:
 1. Download Docker and setup a container on your NVIDIA Jetson Orin Nano (Make sure to not use the auto-delete feature when you run it!)
 2. Run `git clone https://github.com/PortMaster1/N.O.V.A-Project.git` in the container or download this repository in your container.
