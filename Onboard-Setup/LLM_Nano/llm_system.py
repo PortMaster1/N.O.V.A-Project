@@ -6,14 +6,6 @@ import asyncio
 
 cMemory = []
 
-# TODO: FINISH
-# Add multiple adapters for different tasks
-add_adapter("emotion_adapter", config="emotion_adapter_config.json")
-
-# TODO: FINISH
-# Activate both emotion and memory adapters
-run adapter
-
 available_functions = {
   'update_memory': update_memory,
   'update_emotions': update_emotions,
