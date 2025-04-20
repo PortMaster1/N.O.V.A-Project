@@ -14,6 +14,10 @@ async def get_states(states=[]):
     x, y, z, tilt = states
     return {"message": "States Received"}
 
+@app.post("/listen/{text}")
+async def listen(text=""):
+    pass
+
 @app.post("/chat/{message}")
 async def chat(message):
     response = get_resposnse(message)
@@ -26,7 +30,3 @@ async def listen():
 
 async def speak(text):
     pass
-
-async def get_states():
-    tilt = x = y = z = None
-    return [tilt, x, y, z]
