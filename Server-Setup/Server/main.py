@@ -1,12 +1,23 @@
-from llm-system import get_response
-import server
+from llm_system import get_response
+from server import listen, speak
 import re
-from memory-lane import remember, forget
+from time import sleep
+from memory_lane import remember, forget
+import rest
+import asyncio
 
+# Real Loop
+def main_loop():
+    while True:
+        user_input = listen()
+        match = re.search('sleep', user_input.lower())
+        if match:
+            rest.sleep_cycle()
+        response = get_response(user_input)
+        speak(respomse)
+        sleep(0.1)
 
-
-
-
+# Old Loop
 def main_loop():
     user_input = server.listen()
     response = get_response(user_input)
