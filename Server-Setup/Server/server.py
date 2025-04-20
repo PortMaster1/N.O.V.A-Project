@@ -1,7 +1,6 @@
 import asyncio, requests
 from fastapi import FastAPI
 from llm_system import get_response
-import sensors
 
 app = FastAPI()
 
