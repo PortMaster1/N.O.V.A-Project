@@ -4,6 +4,7 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 from TTS.api import TTS
 import asyncio
+import requests
 
 # Initialize STT and TTS Engines
 model = WhisperModel("base.en", compute_type="int8")  # Use "tiny", "base", or "small" for speed
