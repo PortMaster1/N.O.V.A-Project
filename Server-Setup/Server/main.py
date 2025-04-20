@@ -6,8 +6,6 @@ from memory_lane import remember, forget
 import rest
 import asyncio
 
-# REST API URL of your LLM server
-SERVER_URL = "http://192.168.12.141:8000/chat"  # Update IP
 
 
 # Real Loop
