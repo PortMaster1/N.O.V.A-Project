@@ -1,11 +1,24 @@
 import asyncio, requests
+from fastapi import FastAPI
+from llm_system import get_response
+import sensors
 
-# REST API URL of your LLM server
-CHAT_URL = "http://192.168.12.141:8000/chat"  # Update IP
+app = FastAPI()
 
-async def get_response(text, model):
-    response = await requests.post(CHAT_URL, json={"message": text})
-    return response.json()["response"]
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+@app.post("/state/{states}")
+async def get_states(states=[]):
+    x, y, z, tilt = states
+    return {"message": "States Received"}
+
+@app.post("/chat/{message}")
+async def chat(message):
+    response = get_resposnse(message)
+    return response
+
 
 async def listen():
     text = ""
