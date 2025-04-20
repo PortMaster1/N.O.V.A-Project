@@ -24,7 +24,7 @@ async def build_prompt(user_input, sys_prompt='', enable_emotions=True):
     prompt += f"<|user|>\n{user_input}\n<|nova|>"
     return prompt
 
-async def get_response(input_text, prompt=''):
+async def get_response(input_text, prompt='', model="daymodel"):
     if prompt == '':
         prompt = await build_prompt(input_text)
     inputs = input_text
