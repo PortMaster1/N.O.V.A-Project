@@ -31,6 +31,9 @@ async def receive_states(state=[]):
 
 @app.post("/chat/{message}")
 async def chat(message):
-    match = re.search(message.lower(), "nova, sleep")
-    response = get_resposnse(message)
+    match = re.search("nova, sleep", message.lower())
+    if match:
+        await rest.sleep_cycle()
+    else:
+        response = get_resposnse(message)
     return response
