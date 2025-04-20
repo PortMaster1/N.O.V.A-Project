@@ -21,9 +21,8 @@ def save_reflection(text):
 
 
 def generate_reflection(memory):
-    sys_prompt = "You are Nova. You are writing in your nightly journal. Be yourself."
     text = "Reflect on the day. What did you learn about emotions like joy, sadness, or curiosity? Does you feel any different now? Write about what you did and what you didn't get to do. Write about what you wanted to do, and what you think about the world around you."
-    get_response(sys_prompt=sys_prompt, user_input=text)
+    get_response(text, "night_model")
 
 # Run Nova's "sleep mode"
 def sleep_cycle():
