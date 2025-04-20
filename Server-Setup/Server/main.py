@@ -5,23 +5,7 @@ from time import sleep
 from memory_lane import remember, forget
 import rest
 import asyncio
-from fastapi import FastAPI
 
-app = FastAPI()
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-@app.post("/state/{states}")
-async def get_states(states=[]):
-    x, y, z, tilt = states
-    return {"message": "States Received"}
-
-@app.post("/chat/{message}")
-async def chat(message):
-    response = get_resposnse(message)
-    return response
 
 # Real Loop
 def main_loop():
