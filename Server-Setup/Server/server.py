@@ -5,6 +5,15 @@ import sensors
 
 app = FastAPI()
 
+old_text = ""
+text = ""
+
+def _get_old_text():
+    return old_text
+
+def _get_text():
+    return text
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
@@ -15,17 +24,22 @@ async def get_states(states=[]):
     return {"message": "States Received"}
 
 @app.post("/listen/{text}")
-async def listen(text=""):
-    pass
+async def listen_api(text=""):
+    return text
 
 @app.post("/chat/{message}")
 async def chat(message):
     response = get_resposnse(message)
     return response
 
+async def wait_until_equal(func1, func2, check_interval=0.1):
+    pass
 
 async def listen():
-    text = ""
+    if _get_old_text() == _get_text():
+        await text != old_text
+    else:
+        old_text = text
     return text
 
 async def speak(text):
