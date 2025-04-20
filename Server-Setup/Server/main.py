@@ -13,6 +13,16 @@ app = FastAPI()
 async def root():
     return {"message": "Hello World"}
 
+@app.post("/state")
+async def get_states(states=[]):
+    x, y, z, tilt = states
+    return {"message": "States Received"}
+
+@app.post("/chat")
+async def chat(message):
+    response = get_resposnse(message)
+    return response
+
 # Real Loop
 def main_loop():
     while True:
