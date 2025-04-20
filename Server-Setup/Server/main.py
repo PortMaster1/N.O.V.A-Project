@@ -5,8 +5,13 @@ from time import sleep
 from memory_lane import remember, forget
 import rest
 import asyncio
+from fastapi import FastAPI
 
+app = FastAPI()
 
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
 
 # Real Loop
 def main_loop():
