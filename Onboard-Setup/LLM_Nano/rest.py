@@ -22,7 +22,7 @@ def save_reflection(text):
 
 def generate_reflection(memory):
     text = "Reflect on the day. What did you learn about emotions like joy, sadness, or curiosity? Does you feel any different now? Write about what you did and what you didn't get to do. Write about what you wanted to do, and what you think about the world around you."
-    get_response(text, "night_model")
+    get_response(text, "nightmodel")
 
 # Run Nova's "sleep mode"
 def sleep_cycle():
