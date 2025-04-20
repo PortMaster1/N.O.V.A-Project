@@ -2,6 +2,7 @@ import asyncio, requests, re
 from fastapi import FastAPI
 from llm_system import get_response
 import rest
+from memory_lane import remember, forget
 
 app = FastAPI()
 
@@ -37,3 +38,13 @@ async def chat(message):
     else:
         response = get_resposnse(message)
     return response
+
+@app.post("/memory/remember/{memory}")
+async def remember_something(memory):
+    remember(memory.key, memory.value)
+    return {"message": "Hello"}
+
+@app.post("/memory/forget/{memory}")
+async def forget_something(memory):
+    forget(memory.key, memory.value)
+    return {"message": "Hello"}
