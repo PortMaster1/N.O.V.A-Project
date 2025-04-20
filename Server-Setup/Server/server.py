@@ -1,5 +1,8 @@
 import asyncio, requests
 
+# REST API URL of your LLM server
+SERVER_URL = "http://192.168.12.141:8000/chat"  # Update IP
+
 async def listen():
     text = ""
     return text
