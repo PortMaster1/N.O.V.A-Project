@@ -3,13 +3,14 @@ from faster_whisper import WhisperModel
 import sounddevice as sd
 from scipy.io.wavfile import write
 from TTS.api import TTS
+import asyncio
 
 # Initialize STT and TTS Engines
 model = WhisperModel("base.en", compute_type="int8")  # Use "tiny", "base", or "small" for speed
 tts_model = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC", progress_bar=False)
 
 # Listen function
-def listen():
+async def listen():
     fs = 16000  # Whisper likes 16kHz mono
     seconds = 5
     print("Listening...")
@@ -30,7 +31,7 @@ def speak(response_text, filename="response.wav"):
 # Adjust this port to match yours (likely /dev/ttyACM0 or /dev/ttyUSB0)
 ser = serial.Serial('/dev/ttyACM0', 115200)
 
-def read_microbit():
+async def read_microbit():
     while True:
         line = ser.readline().decode().strip()
         if line:
