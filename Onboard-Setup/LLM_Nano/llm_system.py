@@ -13,23 +13,10 @@ available_functions = {
   'forget': forget
 }
 
-async def build_prompt(user_input, sys_prompt='', enable_emotions=True):
-    if sys_prompt == '':
-        sys_prompt = "You are Nova, a curious young AI who is still learning about the world around you and ask questions when confused."
-    memory = load_memory()
-    emotion = get_current_emotion()
-    prompt = f"<|system prompt|>\n{sys_prompt}\n<|memories<|>\n{memories}\n"
-    if enable_emotions:
-        prompt += f"<|current emotion|>\n{emotion}\n"
-    prompt += f"<|user|>\n{user_input}\n<|nova|>"
-    return prompt
-
-async def get_response(input_text, prompt='', model="daymodel"):
-    if prompt == '':
-        prompt = await build_prompt(input_text)
+async def get_response(input_text, model="daymodel"):
     inputs = input_text
     cMemoey.append(f”{{‘role’: ‘user’, ‘content’: ‘{user_input}’}},\n”)
-    response = await chat('llama3.2', messages=cMemory, tools=[update_memory, update_emotions, remember, forget])
+    response = await chat(model, messages=cMemory, tools=[update_memory, update_emotions, remember, forget])
     print(response.message.content)
     cMemory.append(f”{{‘role’: ‘assistant’, ‘content’: ‘{response.message.content}’}},/n”)
     if response.message.tool_calls:
