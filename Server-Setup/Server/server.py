@@ -1,14 +1,10 @@
 import asyncio, requests
 
-# Sender REST API URL of your LLM server
-SERVER_URL = "http://192.168.12.141:8000/chat"  # Update IP
+# REST API URL of your LLM server
+CHAT_URL = "http://192.168.12.141:8000/chat"  # Update IP
 
-# Receiver REST API URL of the LLM server
-RECEIVE_URL = "http://192.168.12.141:8000/state" # Update IP
-
-# Talk to server
-def talk_to_server(message):
-    response = requests.post(SERVER_URL, json={"message": message})
+async def get_response(text, model):
+    response = await requests.post(CHAT_URL, json={"message": text})
     return response.json()["response"]
 
 async def listen():
