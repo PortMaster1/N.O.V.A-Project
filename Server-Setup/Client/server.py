@@ -1,7 +1,7 @@
 import asyncio, requests
 
 # REST API URL of your LLM server
-IP = "192.168.12.141:8000"            # Update IP Address
+IP = "192.168.12.138:8000"            # Update IP Address
 CHAT_URL = f"http://{IP}/chat"
 STATE_URL = f"http://{IP}/state"
 
