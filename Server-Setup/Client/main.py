@@ -5,12 +5,15 @@ from sensors import read_microbit, listen, speak
 async def send_state_loop():
     while True:
         x, y, z, tilt = await read_microbit()
-        await send_states(x, y, z, tilt)
+        send_states(x, y, z, tilt)
         await asyncio.sleep(0.1)
 
 async def llm_loop():
     while True:
-        
+        text = listen()
+        response = await get_response(text)
+        speak(response)
+        await asyncio.sleep(0.1)
 
 def main_loop():
     asyncio.run(send_state_loop)
