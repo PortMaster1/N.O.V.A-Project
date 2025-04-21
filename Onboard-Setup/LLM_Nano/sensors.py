@@ -24,7 +24,7 @@ async def listen():
     return result
 
 # Speak the response from the LLM
-def speak(response_text, filename="response.wav"):
+async def speak(response_text, filename="response.wav"):
     print(f"[NOVA] {response_text}")
     tts_model.tts_to_file(text=response_text, file_path=filename)
     os.system(f"aplay {filename}" if os.name != 'nt' else f"start {filename}")
