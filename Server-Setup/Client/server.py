@@ -12,5 +12,3 @@ async def get_response(text, model):
 async def send_states(x, y, z, tilt):
     requests.post(STATE_URL, json={"states": [x, y, z, tilt]})
     return
-
-async def 
