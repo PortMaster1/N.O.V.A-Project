@@ -2,13 +2,14 @@ import os, serial
 from faster_whisper import WhisperModel
 import sounddevice as sd
 from scipy.io.wavfile import write
-from TTS.api import TTS
+import pyttsx3
 import asyncio
 import requests
 
 # Initialize STT and TTS Engines
 model = WhisperModel("base.en", compute_type="int8")  # Use "tiny", "base", or "small" for speed
-tts_model = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC", progress_bar=False)
+#tts_model = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC", progress_bar=False)
+engine = pyttsx3.init()
 
 # Listen function
 async def listen():
@@ -26,8 +27,10 @@ async def listen():
 # Speak the response from the LLM
 async def speak(response_text, filename="response.wav"):
     print(f"[NOVA] {response_text}")
-    tts_model.tts_to_file(text=response_text, file_path=filename)
-    os.system(f"aplay {filename}" if os.name != 'nt' else f"start {filename}")
+    #tts_model.tts_to_file(text=response_text, file_path=filename)
+    engine.say(response_text)
+    engine.runAndWait()
+    #os.system(f"aplay {filename}" if os.name != 'nt' else f"start {filename}")
 
 # Adjust this port to match yours (likely /dev/ttyACM0 or /dev/ttyUSB0)
 ser = serial.Serial('/dev/ttyACM0', 115200)

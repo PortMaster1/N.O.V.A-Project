@@ -1,9 +1,10 @@
 import asyncio, requests, re
-from fastapi import FastAPI
-from llm_system import get_response
-import rest
+from flask import Flask, request, jsonify
+import llm_system
 
-app = FastAPI()
+get_response = llm_system.get_response
+
+app = Flask(__name__)
 
 states = {
     "x": 0.0,
@@ -15,25 +16,29 @@ states = {
 def get_states():
     return states
 
-@app.get("/")
+@app.route("/")
 async def root():
     return {"message": "Hello World"}
 
-@app.post("/state/{state}")
-async def receive_states(state=[]):
+@app.route("/state", methods=["POST"])
+async def receive_states():
+    state = request.get_json()['state']
     global states
-    x, y, z, tilt = state
+    x, y, z, tilt = state.split()
     statss.x = x
     states.y = y
     states.z = z
     states.tilt = tilt
     return {"message": "States Received"}
 
-@app.post("/chat/{message}")
-async def chat(message):
+@app.route("/chat", methods=["POST"])
+async def chat():
+    message = request.get_json()['message']
+    print(message)
     match = re.search("nova, sleep", message.lower())
     if match:
-        await rest.sleep_cycle()
+        # await rest.sleep_cycle()
+        pass # TODO: FIX LATER
     else:
-        response = get_resposnse(message)
-    return response
+        response = await get_response(message)
+    return {"response": response}
