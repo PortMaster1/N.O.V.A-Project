@@ -33,13 +33,12 @@ async def speak(response_text, filename="response.wav"):
 ser = serial.Serial('/dev/ttyACM0', 115200)
 
 async def read_microbit():
-    while True:
-        line = ser.readline().decode().strip()
-        if line:
-            try:
-                x, y, z, tilt = line.split(",")
-                x, y, z = int(x), int(y), int(z)
-                print(f"Accel: x={x}, y={y}, z={z}, Tilt: {tilt}")
-                return x, y, z, tilt
-            except:
-                print("NO RESPONSE FROM SERIAL INTERFACE")
+    line = ser.readline().decode().strip()
+    if line:
+        try:
+            x, y, z, tilt = line.split(",")
+            x, y, z = int(x), int(y), int(z)
+            print(f"Accel: x={x}, y={y}, z={z}, Tilt: {tilt}")
+            return x, y, z, tilt
+        except:
+            print("NO RESPONSE FROM SERIAL INTERFACE")
