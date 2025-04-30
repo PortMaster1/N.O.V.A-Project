@@ -1,7 +1,9 @@
 import asyncio, requests, re
 from fastapi import FastAPI
-from llm_system import get_response
-import rest
+from . import llm_system
+from . import rest
+
+get_response = llm_system.get_response
 
 app = FastAPI()
 

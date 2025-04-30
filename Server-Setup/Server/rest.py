@@ -1,8 +1,11 @@
-import time, json, os, random
-from memory_lane import load_memory
-from llm_system import get_response
-from sensors import listen
-import re
+import time, json, os, random, re
+from . import load_memory
+from . import llm_system
+from . import sensors
+
+load_memory = memory_lane.load_memory
+get_response = llm_system.get_response
+listen = sensors.listen
 
 # Path where memory and reflections are saved
 MEMORY_PATH = "memory.json"

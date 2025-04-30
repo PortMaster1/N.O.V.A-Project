@@ -1,8 +1,12 @@
-from memory_lane import load_memory, update_memory
-from emotion_core import get_current_emotion, update_emotions
+from . import memory_lane
+from . import emotion_core
 from ollama import chat, ChatResponse
 import asyncio
 
+load_memory = memory_lane.load_memory
+update_memory = memory_lane.update_memory
+get_current_emotion = emotion_core.get_current_emotion
+update_emotions = emotion_core.update_emotions
 
 cMemory = []
 
