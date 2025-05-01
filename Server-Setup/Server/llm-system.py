@@ -17,7 +17,7 @@ available_functions = {
   'forget': forget
 }
 
-async def get_response(input_text, model="day_model"):
+async def get_response(input_text, model="daymodel"):
     inputs = input_text
     cMemoey.append(f”{{‘role’: ‘user’, ‘content’: ‘{user_input}’}},\n”)
     response = await chat(model, messages=cMemory, tools=[update_memory, update_emotions, remember, forget])
