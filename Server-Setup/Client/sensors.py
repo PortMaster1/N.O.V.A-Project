@@ -5,6 +5,7 @@ from scipy.io.wavfile import write
 import pyttsx3
 import asyncio
 import requests
+from time import sleep
 
 # Initialize STT and TTS Engines
 model = WhisperModel("base.en", compute_type="int8")  # Use "tiny", "base", or "small" for speed
@@ -17,8 +18,11 @@ def listen():
     seconds = 5
     print("Listening...")
     recording = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
+    sleep(5)
     sd.wait()
+    print("Finished Listening.")
     write("audio.wav", fs, recording)
+    print("Finished writing")
     segments, info = model.transcribe("audio.wav", beam_size=5)
     result = "".join([segment.text for segment in segments])
     print(f"[USER] {result}")
