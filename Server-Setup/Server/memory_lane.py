@@ -36,7 +36,7 @@ def retrieve_memory(key):
 
 # Run Functions for LLM
 
-async def remember(key="", value="") -> str:
+def remember(key="", value="") -> str:
     """
     Retrieve a certain memory or date of a memory from Nova's long term 
 memory.
@@ -56,7 +56,7 @@ memory.
     if not value == "":
         return "".join([k for k, v in memory.items() if v == value])
 
-async def forget(key="", value=""):
+def forget(key="", value=""):
     """
     Forgets a certain memory or date of a memory from Nova's long term memory.
 

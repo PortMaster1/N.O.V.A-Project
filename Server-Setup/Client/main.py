@@ -1,12 +1,14 @@
 import asyncio
 from server import send_states, get_response
-from sensors import read_microbit, listen, speak
+from sensors import listen, speak#, read_microbit
 
+"""
 async def send_state_loop():
     while True:
         x, y, z, tilt = await read_microbit()
         await send_states(x, y, z, tilt)
         await asyncio.sleep(0.1)
+"""
 
 async def llm_loop():
     while True:
@@ -16,5 +18,5 @@ async def llm_loop():
         await asyncio.sleep(0.1)
 
 def main_loop():
-    asyncio.run(send_state_loop)
+    #asyncio.run(send_state_loop)
     asyncio.run(llm_loop)

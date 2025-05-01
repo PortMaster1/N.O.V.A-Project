@@ -23,7 +23,8 @@ async def get_response(input_text, model="day_model"):
     global chat_mem
     inputs = input_text
     chat_mem.append({"role": "user", "content": input_text},)
-    response = chat(model, messages=chat_mem, tools=[update_memory, update_emotions, remember, forget])
+    #response = chat(model, messages=chat_mem, tools=[update_memory, update_emotions, remember, forget]
+    response = chat(model, messages=chat_mem)
     print(response.message.content)
     chat_mem.append({"role": "assistant", "content": response.message.content},)
     if response.message.tool_calls:
@@ -36,8 +37,8 @@ async def get_response(input_text, model="day_model"):
           output = function_to_call(**tool.function.arguments)
           print('Function output:', output)
           # Add the function response to messages for the model to use
-          messages.append(response.message)
-          messages.append({'role': 'tool', 'content': str(output), 'name': tool.function.name})
+          chat_mem.append(response.message)
+          chat_mem.append({'role': 'tool', 'content': str(output), 'name': tool.function.name})
         else:
           print('Function', tool.function.name, 'not found')
     return response.message.content
