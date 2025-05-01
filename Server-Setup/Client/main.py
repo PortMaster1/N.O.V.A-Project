@@ -30,3 +30,6 @@ def main_loop():
     #asyncio.run(send_state_loop)
     #asyncio.run(llm_loop)
     llm_placeholer_loop()
+
+if __name__ = "__main__":
+    main_loop()
