@@ -19,7 +19,8 @@ available_functions = {
   'forget': forget
 }
 
-async def get_response(input_text, model="day_model"):
+# Add async to this later!
+def get_response(input_text, model="day_model"):
     global chat_mem
     inputs = input_text
     chat_mem.append({"role": "user", "content": input_text},)
@@ -48,6 +49,7 @@ if __name__ == '__main__':
     try:
         while True:
             input_text = input(" You say:")
-            asyncio.run(get_response(input_text))
+            #asyncio.run(get_response(input_text))
+            get_response(input_text)
     except KeyboardInterrupt:
         print("Goodbye!")
