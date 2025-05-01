@@ -12,7 +12,7 @@ model = WhisperModel("base.en", compute_type="int8")  # Use "tiny", "base", or "
 engine = pyttsx3.init()
 
 # Listen function
-async def listen():
+def listen():
     fs = 16000  # Whisper likes 16kHz mono
     seconds = 5
     print("Listening...")
@@ -25,7 +25,7 @@ async def listen():
     return result
 
 # Speak the response from the LLM
-async def speak(response_text, filename="response.wav"):
+def speak(response_text, filename="response.wav"):
     print(f"[NOVA] {response_text}")
     #tts_model.tts_to_file(text=response_text, file_path=filename)
     engine.say(response_text)
