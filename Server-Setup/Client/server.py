@@ -5,8 +5,8 @@ IP = "192.168.12.138:8000"            # Update IP Address
 CHAT_URL = f"http://{IP}/chat"
 STATE_URL = f"http://{IP}/state"
 
-async def get_response(text, model="day_model"):
-    response = await requests.post(CHAT_URL, json={"message": text})
+def get_response(text, model="day_model"):
+    response = requests.post(CHAT_URL, json={"message": text})
     return response.json()["response"]
 
 async def send_states(x, y, z, tilt):

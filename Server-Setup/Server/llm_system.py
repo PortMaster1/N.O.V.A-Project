@@ -19,8 +19,7 @@ available_functions = {
   'forget': forget
 }
 
-# Add async to this later!
-def get_response(input_text, model="day_model"):
+async def get_response(input_text, model="day_model"):
     global chat_mem
     inputs = input_text
     chat_mem.append({"role": "user", "content": input_text},)
