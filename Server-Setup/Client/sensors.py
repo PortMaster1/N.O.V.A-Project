@@ -32,6 +32,7 @@ async def speak(response_text, filename="response.wav"):
     engine.runAndWait()
     #os.system(f"aplay {filename}" if os.name != 'nt' else f"start {filename}")
 
+"""
 # Adjust this port to match yours (likely /dev/ttyACM0 or /dev/ttyUSB0)
 ser = serial.Serial('/dev/ttyACM0', 115200)
 
@@ -45,3 +46,4 @@ async def read_microbit():
             return x, y, z, tilt
         except:
             print("NO RESPONSE FROM SERIAL INTERFACE")
+"""
