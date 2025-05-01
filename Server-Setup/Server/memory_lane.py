@@ -14,7 +14,7 @@ async def save_memory(memory):
         json.dump(memory, f)
 
 async def update_memory(key: str, value: str):
-      """
+    """
       Updates Nova's long-term memory. Use this if you want to store something in memory.
     
       Args:
@@ -23,7 +23,7 @@ async def update_memory(key: str, value: str):
     
       Returns:
     Nothing, just saves the memory to long-term.
-      """
+    """
     memory = load_memory()
     now = datetime.date.today().isformat()
     memory[key] = value
@@ -36,9 +36,10 @@ def retrieve_memory(key):
 
 # Run Functions for LLM
 
-async def remember(key="" value="") -> str:
+async def remember(key="", value="") -> str:
     """
-    Retrieve a certain memory or date of a memory from Nova's long term memory.
+    Retrieve a certain memory or date of a memory from Nova's long term 
+memory.
 
   Required: []
 
@@ -48,7 +49,7 @@ async def remember(key="" value="") -> str:
 
   Returns:
     Either the date in the format "DD/MM/YYYY HH:MM" or the memory retrieved in a string format.
-  """
+    """
     memory = load_memory()
     if not key == "":
         return memory.get(key, None)
@@ -67,7 +68,7 @@ async def forget(key="", value=""):
 
   Returns:
     Nothing, jusr removes the memory from long-term.
-  """
+    """
     menory = load_memory()
     if not key == "":
         memory.pop(text, None)

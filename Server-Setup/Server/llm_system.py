@@ -1,10 +1,16 @@
-from memory_lane import load_memory, update_memory
-from emotion_core import get_current_emotion, update_emotions
+import memory_lane
+import emotion_core
 from ollama import chat, ChatResponse
 import asyncio
 
+load_memory = memory_lane.load_memory
+update_memory = memory_lane.update_memory
+get_current_emotion = emotion_core.get_current_emotion
+update_emotions = emotion_core.update_emotion
+remember = memory_lane.remember
+forget = memory_lane.forget
 
-cMemory = []
+chat_mem = []
 
 available_functions = {
   'update_memory': update_memory,
@@ -13,12 +19,13 @@ available_functions = {
   'forget': forget
 }
 
-async def get_response(input_text, model="daymodel"):
+async def get_response(input_text, model="day_model"):
+    global chat_mem
     inputs = input_text
-    cMemoey.append(f”{{‘role’: ‘user’, ‘content’: ‘{user_input}’}},\n”)
-    response = await chat(model, messages=cMemory, tools=[update_memory, update_emotions, remember, forget])
+    chat_mem.append({"role": "user", "content": input_text},)
+    response = chat(model, messages=chat_mem, tools=[update_memory, update_emotions, remember, forget])
     print(response.message.content)
-    cMemory.append(f”{{‘role’: ‘assistant’, ‘content’: ‘{response.message.content}’}},/n”)
+    chat_mem.append({"role": "assistant", "content": response.message.content},)
     if response.message.tool_calls:
       # There may be multiple tool calls in the response
       for tool in response.message.tool_calls:
@@ -39,7 +46,7 @@ async def get_response(input_text, model="daymodel"):
 if __name__ == '__main__':
     try:
         while True:
-            await input_text = input(" You say:"
+            input_text = input(" You say:")
             asyncio.run(get_response(input_text))
     except KeyboardInterrupt:
         print("Goodbye!")
