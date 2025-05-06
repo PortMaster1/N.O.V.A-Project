@@ -11,6 +11,14 @@ async def send_state_loop():
         await asyncio.sleep(0.1)
 """
 
+class Main:
+    def __init__():
+        while True:
+            text = listen()
+            reaponse = get_response(text)
+            speak(response)
+            sleep(0.1)
+
 async def llm_loop():
     while True:
         text = listen()
@@ -18,18 +26,10 @@ async def llm_loop():
         speak(response)
         await asyncio.sleep(0.1)
 
-def llm_placeholer_loop():
-    while True:
-        text = listen()
-        response = get_response(text)
-        print("Testing")
-        speak(response)
-        sleep(0.1)
-
 def main_loop():
     #asyncio.run(send_state_loop)
     #asyncio.run(llm_loop)
-    llm_placeholer_loop()
+    m = Main()
 
 if __name__ == "__main__":
     main_loop()
