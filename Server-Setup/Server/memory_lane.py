@@ -56,6 +56,15 @@ memory.
     if not value == "":
         return "".join([k for k, v in memory.items() if v == value])
 
+def get_memory_from_time(value):
+    """
+    Retrieve a certain memory from a certain time.
+    
+    value is the timestamp of the memory
+    """
+    memory = load_memory()
+    return "".join([k for k, v in memory.items() if v == value])
+
 def forget(key="", value=""):
     """
     Forgets a certain memory or date of a memory from Nova's long term memory.
