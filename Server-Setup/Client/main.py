@@ -1,7 +1,15 @@
-import asyncio, requests
+import asyncio, requests, os, serial, pyttsx3
 from time import sleep
-from sensors import listen, speak#, read_microbit
+from sensors import listen, speak
+from faster_whisper import WhisperModel
+import sounddevice as sd
+from scipy.io.wavfile import write
 
+
+# Initialize STT and TTS Engines
+model = WhisperModel("base.en", compute_type="int8")  # Use "tiny", "base", or "small" for speed
+#tts_model = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC", progress_bar=False)
+engine = pyttsx3.init()
 
 """
 async def send_state_loop():
@@ -14,9 +22,9 @@ async def send_state_loop():
 class Main:
     def __init__(self):
         while True:
-            text = listen()
+            text = self.listen()
             reaponse = self.get_response(text)
-            speak(response)
+            self.speak(response)
             sleep(0.1)
     
     def send_states(self, x, y, z, tilt):
@@ -30,6 +38,30 @@ class Main:
         STATE_URL = f"http://{IP}/state"
         response = requests.post(CHAT_URL, json={"message": text})
         return response.json()["response"]
+    
+    # Listen Functiom
+    def listen(self):
+        fs = 16000  # Whisper likes 16kHz mono
+        seconds = 5
+        print("Listening...")
+        recording = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
+        sleep(5)
+        sd.wait()
+        print("Finished Listening.")
+        write("audio.wav", fs, recording)
+        print("Finished writing")
+        segments, info = model.transcribe("audio.wav", beam_size=5)
+        result = "".join([segment.text for segment in segments])
+        print(f"[USER] {result}")
+        return result
+    
+    # Speak the response from the LLM
+    def speak(self, response_text, filename="response.wav"):
+        print(f"[NOVA] {response_text}")
+        #tts_model.tts_to_file(text=response_text, file_path=filename)
+        engine.say(response_text)
+        engine.runAndWait()
+        #os.system(f"aplay {filename}" if os.name != 'nt' else f"start {filename}")
 
 async def llm_loop():
     while True:
