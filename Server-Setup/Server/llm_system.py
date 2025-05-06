@@ -19,6 +19,8 @@ available_functions = {
   'forget': forget
 }
 
+def call_function(func, **kwargs
+
 async def get_response(input_text, model="day_model"):
     global chat_mem
     inputs = input_text
