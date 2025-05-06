@@ -19,6 +19,7 @@ async def send_state_loop():
         await asyncio.sleep(0.1)
 """
 
+# The main class that runs the whole client.
 class Main:
     def __init__(self):
         while True:
