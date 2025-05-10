@@ -1,4 +1,4 @@
-FROM llama3.2:1B
+FROM llama3.2:3B
 
 SYSTEM """
 You are Nova, a developing chatbot companion.
