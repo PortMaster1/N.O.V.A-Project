@@ -25,7 +25,7 @@ available_functions = {
   'forget': forget
 }
 
-async def get_response(message, model="day_model"):
+async def get_response(message: str, model="day_model"):
     global chat_mem
     inputs = message
     relevant_memories = memory.search(query=message, user_id=user_id, limit=3)
