@@ -4,7 +4,7 @@ from sensors import listen, speak
 from faster_whisper import WhisperModel
 import sounddevice as sd
 from scipy.io.wavfile import write
-
+from dotenv import load_env
 
 # Initialize STT and TTS Engines
 model = WhisperModel("base.en", compute_type="int8")  # Use "tiny", "base", or "small" for speed
