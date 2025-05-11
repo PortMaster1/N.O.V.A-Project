@@ -45,6 +45,11 @@ async def get_response(message: str, model: str = "nova4.1", user_id: str = "def
     global chat_mem
     inputs = message
     relevant_memories = memory.search(query=message, user_id=user_id)
+    if previous_memories:
+        prompt = f"User input: {question}\nPrevious memories: {', '.join(previous_memories)}"
+    else:
+        prompt = f"User input: {question}"
+    
     memories_str = "\n".join(f"- {entry['memory']}" for entry in relevant_memories["results"])
     chat_mem.append({"role": "user", "content": message},)
     #response = chat(model, messages=chat_mem, tools=[update_memory, update_emotions, remember, forget]
