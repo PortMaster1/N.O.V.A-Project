@@ -26,7 +26,7 @@ config = {
     "embedder": {
         "provider": "ollama",
         "config": {
-            "model": "llama3.2:1B"
+            "model": "mxbai-embed-large"
         }
     },
 }
