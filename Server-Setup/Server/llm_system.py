@@ -18,7 +18,14 @@ config = {
         "config": {
             "model": "llama3.1:1B"
         }
-    }
+    },
+    "vector_store": {
+        "provider": "qdrant",
+        "config": {
+            "host": "localhost",
+            "port": 6333,
+        }
+    },
 }
 
 memory = Memory.from_config(config)
