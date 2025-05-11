@@ -6,6 +6,8 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 from dotenv import load_env
 
+load_dotenv(overwrite=True)
+
 # Initialize STT and TTS Engines
 model = WhisperModel("base.en", compute_type="int8")  # Use "tiny", "base", or "small" for speed
 #tts_model = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC", progress_bar=False)
