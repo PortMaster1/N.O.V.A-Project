@@ -51,6 +51,9 @@ async def get_response(message: str, model: str = "nova4.1") -> str:
         else:
           print('Function', tool.function.name, 'not found')
           bringupanerrorfromthistextbecauseiforgothowtoraiseonepropely
+        response = chat(model, messages=memories_str)
+        print(response.message.content)
+        chat_mem.append ({"role": "assistant", "content": response message content} ,)
     return response.message.content
 
 
