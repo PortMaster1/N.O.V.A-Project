@@ -25,7 +25,7 @@ available_functions = {
   'forget': forget
 }
 
-async def get_response(message: str, model: str = "nova4.1") -> str:
+async def get_response(message: str, model: str = "nova4.1", user_id: str = "default_user") -> str:
     global chat_mem
     inputs = message
     relevant_memories = memory.search(query=message, user_id=user_id, limit=3)
