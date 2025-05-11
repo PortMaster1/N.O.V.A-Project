@@ -13,7 +13,7 @@ config = {
     "llm": {
         "provider": "ollama",
         "config": {
-            "model": "llama3.1:1B"
+            "model": "llama3.2:1B"
         }
     },
     "vector_store": {
