@@ -29,6 +29,7 @@ async def get_response(message, model="day_model"):
     inputs = message
     relevant_memories = memory.search(query=message, user_id=user_id, limit=3)
     memories_str = "\n".join(f"- {entry['memory']}" for entry in relevant_memories["results"])
+    chat_mem.append({"role": "user", "content": message},)
     #response = chat(model, messages=chat_mem, tools=[update_memory, update_emotions, remember, forget]
     response = chat(model, messages=memories_str)
     print(response.message.content)
