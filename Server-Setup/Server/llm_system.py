@@ -51,11 +51,11 @@ async def get_response(message: str, model: str = "nova4.1", user_id: str = "def
         prompt = f"User input: {question}"
     
     memories_str = "\n".join(f"- {entry['memory']}" for entry in relevant_memories["results"])
-    chat_mem.append({"role": "user", "content": message},)
+    chat_mem.append({"role": "user", "content": message})
     #response = chat(model, messages=chat_mem, tools=[update_memory, update_emotions, remember, forget]
     response = chat(model, messages=chat_mem)
     print(response.message.content)
-    chat_mem.append ({"role": "assistant", "content": response message content} ,)
+    chat_mem.append({"role": "assistant", "content": response.message.content})
     
     if response.message.tool_calls:
       # There may be multiple tool calls in the response
