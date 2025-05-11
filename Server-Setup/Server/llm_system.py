@@ -5,13 +5,6 @@ from ollama import chat, ChatResponse
 import asyncio
 import time
 
-load_memory = memory_lane.load_memory
-update_memory = memory_lane.update_memory
-get_current_emotion = emotion_core.get_current_emotion
-update_emotions = emotion_core.update_emotion
-remember = memory_lane.remember
-forget = memory_lane.forget
-
 # Stopwatch
 start = None
 
@@ -38,12 +31,7 @@ memory = Memory.from_config(config)
 chat_mem = []
 
 # Functions callable by LLM
-available_functions = {
-  'update_memory': update_memory,
-  'update_emotions': update_emotions,
-  'remember': remember,
-  'forget': forget
-}
+available_functions = {}
 
 async def get_response(message: str, model: str = "nova4.1", user_id: str = "default_user") -> str:
     global chat_mem
@@ -87,6 +75,7 @@ async def get_response(message: str, model: str = "nova4.1", user_id: str = "def
         response = chat(model, messages=memories_str)
         print(response.message.content)
         chat_mem.append ({"role": "assistant", "content": response message content} ,)
+    start = time.perf_counter()
     return response.message.content
 
 
