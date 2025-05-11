@@ -25,6 +25,7 @@ config = {
     },
 }
 
+# Initialize Memory
 memory = Memory.from_config(config)
 
 # Temporary Conversation Memory
@@ -33,6 +34,7 @@ chat_mem = []
 # Functions callable by LLM
 available_functions = {}
 
+# Get the response from the LLM
 async def get_response(message: str, model: str = "nova4.1", user_id: str = "default_user") -> str:
     global chat_mem
     global start
@@ -74,7 +76,7 @@ async def get_response(message: str, model: str = "nova4.1", user_id: str = "def
           bringupanerrorfromthistextbecauseiforgothowtoraiseonepropely
         response = chat(model, messages=memories_str)
         print(response.message.content)
-        chat_mem.append ({"role": "assistant", "content": response message content} ,)
+        chat_mem.append ({"role": "assistant", "content": response.message.content})
     start = time.perf_counter()
     return response.message.content
 
