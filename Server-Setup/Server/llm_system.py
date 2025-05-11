@@ -3,6 +3,7 @@ from mem0 import Memory
 import emotion_core
 from ollama import chat, ChatResponse
 import asyncio
+import time
 
 load_memory = memory_lane.load_memory
 update_memory = memory_lane.update_memory
@@ -10,6 +11,9 @@ get_current_emotion = emotion_core.get_current_emotion
 update_emotions = emotion_core.update_emotion
 remember = memory_lane.remember
 forget = memory_lane.forget
+
+# Stopwatch
+start = None
 
 # Persistsnt mem0 Memory
 config = {
@@ -43,7 +47,15 @@ available_functions = {
 
 async def get_response(message: str, model: str = "nova4.1", user_id: str = "default_user") -> str:
     global chat_mem
-    inputs = message
+    global start
+    if not start:
+        start = time.perf_counter()
+    end = time.perf_counter()
+    if end - start > 60:
+        if not chat_mem == []:
+            memory.add(chat_mem, user_id=user_id)
+            chat_mem = []
+    
     relevant_memories = memory.search(query=message, user_id=user_id)
     if relevant_memories:
         prompt = f"User input: {question}\nPrevious memories: {'\n'.join(previous_memories)}"
@@ -56,7 +68,6 @@ async def get_response(message: str, model: str = "nova4.1", user_id: str = "def
     response = chat(model, messages=chat_mem)
     print(response.message.content)
     chat_mem.append ({"role": "assistant", "content": response message content} ,)
-    memory.add(messages, user_id=user_id)
     
     if response.message.tool_calls:
       # There may be multiple tool calls in the response
@@ -76,7 +87,6 @@ async def get_response(message: str, model: str = "nova4.1", user_id: str = "def
         response = chat(model, messages=memories_str)
         print(response.message.content)
         chat_mem.append ({"role": "assistant", "content": response message content} ,)
-        memory.add(messages, user_id=user_id)
     return response.message.content
 
 
