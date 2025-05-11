@@ -35,6 +35,7 @@ async def get_response(message: str, model: str = "nova4.1", user_id: str = "def
     response = chat(model, messages=memories_str)
     print(response.message.content)
     chat_mem.append ({"role": "assistant", "content": response message content} ,)
+    memory.add(messages, user_id=user_id)
     
     if response.message.tool_calls:
       # There may be multiple tool calls in the response
@@ -54,6 +55,7 @@ async def get_response(message: str, model: str = "nova4.1", user_id: str = "def
         response = chat(model, messages=memories_str)
         print(response.message.content)
         chat_mem.append ({"role": "assistant", "content": response message content} ,)
+        memory.add(messages, user_id=user_id)
     return response.message.content
 
 
