@@ -11,10 +11,13 @@ update_emotions = emotion_core.update_emotion
 remember = memory_lane.remember
 forget = memory_lane.forget
 
+# Persistsnt mem0 Memory
 memory = Memory()
 
+# Temporary Conversation Memory
 chat_mem = []
 
+# Functions callable by LLM
 available_functions = {
   'update_memory': update_memory,
   'update_emotions': update_emotions,
