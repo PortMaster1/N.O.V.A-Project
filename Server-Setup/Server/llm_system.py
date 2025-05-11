@@ -11,6 +11,8 @@ update_emotions = emotion_core.update_emotion
 remember = memory_lane.remember
 forget = memory_lane.forget
 
+memory = Memory()
+
 chat_mem = []
 
 available_functions = {
@@ -22,10 +24,11 @@ available_functions = {
 
 def call_function(func, **kwargs
 
-async def get_response(input_text, model="day_model"):
+async def get_response(message, model="day_model"):
     global chat_mem
-    inputs = input_text
-    chat_mem.append({"role": "user", "content": input_text},)
+    inputs = message
+    relevant_memories = memory.search(query=message, user_id=user_id, limit=3)
+    chat_mem.append({"role": "user", "content": message},)
     #response = chat(model, messages=chat_mem, tools=[update_memory, update_emotions, remember, forget]
     response = chat(model, messages=chat_mem)
     print(response.message.content)
@@ -50,8 +53,8 @@ async def get_response(input_text, model="day_model"):
 if __name__ == '__main__':
     try:
         while True:
-            input_text = input(" You say:")
+            message = input(" You say:")
             #asyncio.run(get_response(input_text))
-            get_response(input_text)
+            get_response(message)
     except KeyboardInterrupt:
         print("Goodbye!")
