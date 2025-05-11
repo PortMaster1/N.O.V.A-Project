@@ -23,6 +23,12 @@ config = {
             "port": 6333,
         }
     },
+    "embedder": {
+        "provider": "ollama",
+        "config": {
+            "model": "llama3.2:1B"
+        }
+    },
 }
 
 # Initialize Memory
