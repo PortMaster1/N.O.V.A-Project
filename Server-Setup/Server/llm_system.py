@@ -32,6 +32,7 @@ async def get_response(message, model="day_model"):
     #response = chat(model, messages=chat_mem, tools=[update_memory, update_emotions, remember, forget]
     response = chat(model, messages=memories_str)
     print(response.message.content)
+    chat_mem.append ({"role": "assistant", "content": response message content} ,)
     
     if response.message.tool_calls:
       # There may be multiple tool calls in the response
