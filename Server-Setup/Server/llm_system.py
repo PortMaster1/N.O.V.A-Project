@@ -1,4 +1,5 @@
 import memory_lane
+from mem0 import Memory
 import emotion_core
 from ollama import chat, ChatResponse
 import asyncio
