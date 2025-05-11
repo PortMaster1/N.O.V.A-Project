@@ -44,7 +44,7 @@ available_functions = {
 async def get_response(message: str, model: str = "nova4.1", user_id: str = "default_user") -> str:
     global chat_mem
     inputs = message
-    relevant_memories = memory.search(query=message, user_id=user_id, limit=3)
+    relevant_memories = memory.search(query=message, user_id=user_id)
     memories_str = "\n".join(f"- {entry['memory']}" for entry in relevant_memories["results"])
     chat_mem.append({"role": "user", "content": message},)
     #response = chat(model, messages=chat_mem, tools=[update_memory, update_emotions, remember, forget]
