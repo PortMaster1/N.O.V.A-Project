@@ -12,7 +12,16 @@ remember = memory_lane.remember
 forget = memory_lane.forget
 
 # Persistsnt mem0 Memory
-memory = Memory()
+config = {
+    "llm": {
+        "provider": "ollama",
+        "config": {
+            "model": "llama3.1:1B"
+        }
+    }
+}
+
+memory = Memory.from_config(config)
 
 # Temporary Conversation Memory
 chat_mem = []
