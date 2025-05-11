@@ -25,7 +25,7 @@ available_functions = {
   'forget': forget
 }
 
-async def get_response(message: str, model: str = "nova4.1"):
+async def get_response(message: str, model: str = "nova4.1") -> str:
     global chat_mem
     inputs = message
     relevant_memories = memory.search(query=message, user_id=user_id, limit=3)
@@ -50,6 +50,7 @@ async def get_response(message: str, model: str = "nova4.1"):
           chat_mem.append({'role': 'tool', 'content': str(output), 'name': tool.function.name})
         else:
           print('Function', tool.function.name, 'not found')
+          bringupanerrorfromthistextbecauseiforgothowtoraiseonepropely
     return response.message.content
 
 
