@@ -1,4 +1,3 @@
-import memory_lane
 from mem0 import Memory
 import emotion_core
 from ollama import chat, ChatResponse
@@ -10,17 +9,19 @@ start = None
 
 # Persistsnt mem0 Memory
 config = {
-    "llm": {
-        "provider": "ollama",
-        "config": {
-            "model": "llama3.2:1B"
-        }
-    },
     "vector_store": {
         "provider": "qdrant",
         "config": {
             "host": "localhost",
             "port": 6333,
+            "embedding_model_dims": 1024,
+            "on_disk": True,
+        }
+    },
+    "llm": {
+        "provider": "ollama",
+        "config": {
+            "model": "llama3.2:1B"
         }
     },
     "embedder": {
@@ -54,12 +55,12 @@ async def get_response(message: str, model: str = "nova4.1", user_id: str = "def
     
     relevant_memories = memory.search(query=message, user_id=user_id)
     if relevant_memories:
-        prompt = f"User input: {question}\nPrevious memories: {'\n'.join(previous_memories)}"
+        prompt = f"User input: {message}\nRelevant memories: {'\n'.join(relevant_memories)}"
     else:
-        prompt = f"User input: {question}"
+        prompt = f"User input: {message}"
     
     memories_str = "\n".join(f"- {entry['memory']}" for entry in relevant_memories["results"])
-    chat_mem.append({"role": "user", "content": message})
+    chat_mem.append({"role": "user", "content": prompt})
     #response = chat(model, messages=chat_mem, tools=[update_memory, update_emotions, remember, forget]
     response = chat(model, messages=chat_mem)
     print(response.message.content)
