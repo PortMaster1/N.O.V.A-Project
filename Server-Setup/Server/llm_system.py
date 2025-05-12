@@ -1,4 +1,3 @@
-import memory_lane
 from mem0 import Memory
 import emotion_core
 from ollama import chat, ChatResponse
@@ -14,13 +13,6 @@ config = {
         "provider": "ollama",
         "config": {
             "model": "llama3.2:1B"
-        }
-    },
-    "vector_store": {
-        "provider": "qdrant",
-        "config": {
-            "host": "localhost",
-            "port": 6333,
         }
     },
     "embedder": {
