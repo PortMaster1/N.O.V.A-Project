@@ -47,10 +47,12 @@ class Main:
         fs = 16000  # Whisper likes 16kHz mono
         seconds = 5
         print("Listening...")
+        # TODO: Add LED to show listening
         recording = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
         sleep(5)
         sd.wait()
         print("Finished Listening.")
+        # TODO: Add LED to show finished listening and procceasing
         write("audio.wav", fs, recording)
         print("Finished writing")
         segments, info = model.transcribe("audio.wav", beam_size=5)
@@ -60,6 +62,7 @@ class Main:
     
     # Speak the response from the LLM
     def speak(self, response_text, filename="response.wav"):
+        # TODO Add LED for finished processing
         print(f"[NOVA] {response_text}")
         #tts_model.tts_to_file(text=response_text, file_path=filename)
         engine.say(response_text)
