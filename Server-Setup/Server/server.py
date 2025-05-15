@@ -45,8 +45,10 @@ async def apichat():
 
 @app.route("/chat", methods=["GET","POST"])
 async def chat():
-    message = request.get_form()['message']
-    print(message)
-    #response = get_response(message)
-    response = "This is an example response and needs to be replaced in N.O.V.A-Project/Server-Setup/Server/server.py."
-    return render_template("files/index.html", chat_mem=response)
+    if request.method == "POST":
+        message = request.get_form()['message']
+        print(message)
+        #response = get_response(message)
+        response = "This is an example response and needs to be replaced in N.O.V.A-Project/Server-Setup/Server/server.py."
+    chat_mem = get_chat_mem()
+    return render_template("files/index.html", chat_mem=chat_mem)
