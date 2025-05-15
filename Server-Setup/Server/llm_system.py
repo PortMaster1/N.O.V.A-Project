@@ -85,7 +85,7 @@ async def get_response(message: str, model: str = "nova4.1", user_id: str = "def
         print(response.message.content)
         chat_mem.append ({"role": "assistant", "content": response.message.content})
     start = time.perf_counter()
-    return response.message.content
+    return chat_mem
 
 
 if __name__ == '__main__':
