@@ -41,7 +41,7 @@ chat_mem = []
 # Functions callable by LLM
 available_functions = {}
 
-def get_chat_mem() --> list:
+def get_chat_mem() -> list:
     global chat_mem
     return chat_mem
 
