@@ -2,7 +2,9 @@ import asyncio, requests, re
 from flask import Flask, request, jsonify, render_template
 import llm_system
 
+# Set up functions because Python is weird
 get_response = llm_system.get_response
+get_chat_mem = llm_system.get_chat_mem
 
 app = Flask(__name__)
 
