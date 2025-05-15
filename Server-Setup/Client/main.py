@@ -57,8 +57,8 @@ class Main:
     def get_response(self, text, model="day_model"):
         # REST API URL of your LLM server
         IP = "192.168.12.138:8000"            # Update IP Address
-        CHAT_URL = f"http://{IP}/chat"
-        STATE_URL = f"http://{IP}/state"
+        CHAT_URL = f"http://{IP}/api/chat"
+        STATE_URL = f"http://{IP}/api/state"
         response = requests.post(CHAT_URL, json={"message": text})
         return response.json()["response"]
     
