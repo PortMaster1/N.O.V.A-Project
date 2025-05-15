@@ -5,11 +5,57 @@
     font-family: Arial, Helvetica,
 sans-serif;
   }
+  .chat-container {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  .chat-bubble {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    max-width: 70%;
+    position: relative;
+    display: inline-block;
+  }
+  .chat-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #e0e0e0;
+    border-bottom: 0;
+    margin-left: -10px;
+    margin-bottom: -10px;
+  }
+  /* Optional: align right for sent messages */
+  .sent {
+    background-color: #a0e7ff;
+    align-self: flex-end;
+    float: right;
+  }
+  .sent::after {
+    left: auto;
+    right: 10px;
+    border-top-color: #a0e7ff;
+  }
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 </style>
 <body>
     <h1>Nova</h1>
+    <div class="chat-container">
+    {% for message in chat_mem %}
+      <div class="chat-bubble {% if message.
     
-    {{ for message in chat_mem }}
     
     <form action="/submit" method="post">
       <label for="message">Name:</label><br>
