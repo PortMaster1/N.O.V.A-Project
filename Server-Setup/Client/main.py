@@ -5,6 +5,26 @@ from faster_whisper import WhisperModel
 import sounddevice as sd
 from scipy.io.wavfile import write
 from dotenv import load_env
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)
+GPIO.setup(18, GPIO.OUT)
+GPIO.setup(19, GPIO.OUT)
+GPIO.setup(20, GPIO.OUT)
+
+"""
+try:
+    while True:
+        GPIO.output(17, GPIO.HIGH)  # Turn LED on
+        time.sleep(1)
+        GPIO.output(17, GPIO.LOW)   # Turn LED off
+        time.sleep(1)
+except KeyboardInterrupt:
+    pass
+finally:
+    GPIO.cleanup()  # Clean up GPIO on exit
+"""
 
 load_dotenv(overwrite=True)
 
