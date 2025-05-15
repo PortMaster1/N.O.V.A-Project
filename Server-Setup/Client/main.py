@@ -102,4 +102,8 @@ def main_loop():
     m = Main()
 
 if __name__ == "__main__":
-    main_loop()
+    try:
+        main_loop()
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+        print("Operation Terminated")
