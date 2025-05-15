@@ -20,7 +20,7 @@ def get_states():
 async def root():
     return {"message": "Hello World"}
 
-@app.route("/state", methods=["POST"])
+@app.route("/api/state", methods=["POST"])
 async def receive_states():
     state = request.get_json()['state']
     global states
@@ -31,8 +31,8 @@ async def receive_states():
     states.tilt = tilt
     return {"message": "States Received"}
 
-@app.route("/chat", methods=["POST"])
-async def chat():
+@app.route("/api/chat", methods=["POST"])
+async def apichat():
     message = request.get_json()['message']
     print(message)
     match = re.search("nova, sleep", message.lower())
@@ -40,5 +40,12 @@ async def chat():
         # await rest.sleep_cycle()
         pass # TODO: FIX LATER
     else:
-        response = await get_response(message)
+        response = await get_response(message).content
     return {"response": response}
+
+@app.route("/chat", methods=["GET","POST"])
+async def chat():
+    message = request.get_form()['message']
+    print(message)
+    #response = get_response(message)
+    return 
