@@ -1,5 +1,5 @@
 import asyncio, requests, re
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import llm_system
 
 get_response = llm_system.get_response
@@ -48,4 +48,5 @@ async def chat():
     message = request.get_form()['message']
     print(message)
     #response = get_response(message)
-    return 
+    response = "This is an example response and needs to be replaced in N.O.V.A-Project/Server-Setup/Server/server.py."
+    return render_template("files/index.html", chat_mem=response)
