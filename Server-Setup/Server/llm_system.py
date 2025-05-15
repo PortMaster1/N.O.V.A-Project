@@ -41,6 +41,10 @@ chat_mem = []
 # Functions callable by LLM
 available_functions = {}
 
+def get_chat_mem() --> list:
+    global chat_mem
+    return chat_mem
+
 # Get the response from the LLM
 async def get_response(message: str, model: str = "nova4.1", user_id: str = "default_user") -> str:
     global chat_mem
