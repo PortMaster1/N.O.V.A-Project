@@ -53,4 +53,4 @@ async def chat():
         #response = get_response(message)
         response = "This is an example response and needs to be replaced in N.O.V.A-Project/Server-Setup/Server/server.py."
     chat_mem = get_chat_mem()
-    return render_template("files/index.html", chat_mem=chat_mem)
+    return render_template("index.html", chat_mem=chat_mem)
