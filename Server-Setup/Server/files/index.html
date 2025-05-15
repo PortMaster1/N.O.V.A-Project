@@ -54,19 +54,13 @@ sans-serif;
     <h1>Nova</h1>
     <div class="chat-container">
     {% for message in chat_mem %}
-      <div class="chat-bubble {% if message.
-    
-    
+      <div class="chat-bubble {% if message.role == 'user' %}sent{% endif %} clearfix">
+        {{ message.content }}
+      </div>
+    {% endfor %}
+  </div>
     <form action="/submit" method="post">
-      <label for="message">Name:</label><br>
-      <input type="text" id="name" name="name"><br><br>
-
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email"><br><br>
-
-      <label for="message">Message:</label><br>
-      <textarea id="message" name="message"></textarea><br><br>
-
+      <textarea id="message" name="message" placeholder="Message"></textarea>
       <input type="submit" value="Submit">
     </form>
 </body>
