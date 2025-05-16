@@ -13,3 +13,6 @@ There will be two different setups for this project:
     - The fully onboard setup method contains everything inside of Nova's body.
 
 We will be going over what is happening in each setup's README.md.
+
+## Installation
+1. Install dependencies with 
