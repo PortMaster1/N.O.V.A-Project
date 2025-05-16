@@ -8,7 +8,7 @@ import requests
 from time import sleep
 
 # Initialize STT and TTS Engines
-model = WhisperModel("base.en", compute_type="int8")  # Use "tiny", "base", or "small" for speed
+model = WhisperModel("tiny-int8", compute_type="int8")  # Use "tiny", "base", or "small" for speed
 #tts_model = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC", progress_bar=False)
 engine = pyttsx3.init()
 
