@@ -2,15 +2,15 @@
 The Onboard setup for Nova means that everything is handled by one computer inside of Nova's body.
 
 The onboard setup is currently supported on the following:
-- Jetson Orin Nano (8GB RAM)
-
-This model is planned to be split between two Jetson devices, one running the `LLM_Nano` folder, and the other running the `Vision_Nano` folder.
+- NVIDIA Jetson AGX Orin 64GB Dev Kit
 
 Ollama models are kept at `/usr/share/ollama/.ollama/models`.
 
 # Installation
 
 Make sure to install support for CUDA GPU here: [download here](https://developer.nvidia.com/cuda-downloads)
+
+# This installation documentation is unfinished!!
 
 ### For the LLM-running Orin Nano:
 1. Download Docker and setup a container on your NVIDIA Jetson Orin Nano (Make sure to not use the auto-delete feature when you run it!)
