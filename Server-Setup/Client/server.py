@@ -1,4 +1,6 @@
 import asyncio, requests
+# Testing Imports
+import asyncio, socket
 
 # REST API URL of your LLM server
 IP = "192.168.12.138:8000"            # Update IP Address
@@ -12,3 +14,11 @@ def get_response(text, model="day_model"):
 async def send_states(x, y, z, tilt):
     requests.post(STATE_URL, json={"states": [x, y, z, tilt]})
     return
+
+# Testing Starts Here
+
+class Client:
+    def __init__(self, HOST, PORT):
+        self._HOST = HOST
+        self._PORT = PORT
+        
