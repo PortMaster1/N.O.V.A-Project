@@ -1,6 +1,8 @@
 import asyncio, requests, re
 from flask import Flask, request, jsonify, render_template
 from llm_system import *
+# Testing Imports
+import socket
 
 # Set up functions because Python is weird
 """
@@ -56,3 +58,25 @@ async def chat():
         response = "This is an example response and needs to be replaced in N.O.V.A-Project/Server-Setup/Server/server.py."
     chat_mem = get_chat_mem()
     return render_template("index.html", chat_mem=chat_mem)
+
+# Start Testing Here:
+class Server:
+    def __init__(self, HOST, PORT):
+        self._HOST = HOST
+        self._PORT = PORT
+        # Start Socket Server
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.bimd(HOST, PORT)
+    
+    async def start_listening(self):
+        self.s.listen()
+        print(f"Server Listening on {self._HOST}:{self._PORT}")
+        conn, addr = self.s.accept()
+        with conn:
+            print(f"Connected by {addr}")
+            while True:
+                self.data = conn.recv(1024)
+                if not data:
+                    break
+                print("Received: ", data.decode())
+                conn.sendall(b"Echo " + data)
