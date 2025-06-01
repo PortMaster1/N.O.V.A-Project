@@ -81,7 +81,9 @@ class Server:
             print(f"Connected by {addr}")
             while True:
                 self.data = conn.recv(1024)
-                if not data:
-                    break
-                print("Received: ", data.decode())
-                conn.sendall(b"Echo " + data)
+                print("RECEIVED: ", data.decode())
+    
+    async def send(self, data):
+        encoded = data.encode()
+        self.s.sendall(encoded)
+        print(f"SENT DATA: {data}")
