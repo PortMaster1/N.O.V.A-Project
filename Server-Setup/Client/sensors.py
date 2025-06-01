@@ -36,6 +36,31 @@ def speak(response_text, filename="response.wav"):
     engine.runAndWait()
     #os.system(f"aplay {filename}" if os.name != 'nt' else f"start {filename}")
 
+class Audio:
+    def __init__(self, TTS_MODEL, STT_MODEL, signals):
+        self.stt = pyttsx3.init()
+        self.tts = WbisperModel(STT_MODEL, compute_type="int8")
+    
+    def listen(self):
+        fs = 16000  # Whisper likes 16kHz mono
+        seconds = 5
+        print("Listening...")
+        recording = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
+        time.sleep(5)
+        sd.wait()
+        print("Finished Listening.")
+        write("audio.wav", fs, recording)
+        print("Finished writing")
+        segments, info = model.transcribe("audio.wav", beam_size=5)
+        result = "".join([segment.text for segment in segments])
+        print(f"[USER] {result}")
+        return result
+    
+    def listen_loop(self):
+        
+        while True:
+            
+
 """
 # Adjust this port to match yours (likely /dev/ttyACM0 or /dev/ttyUSB0)
 ser = serial.Serial('/dev/ttyACM0', 115200)
