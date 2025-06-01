@@ -28,12 +28,17 @@ class Client:
         # Initialize Socket Server
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
-    async def start_listening(self):
+    def start_listening(self):
         self.s.connect(self._HOST, self._PORT)
         while True:
             data = self.s.recv(1024).decode()
             print("Received: " + data)
+            # Include a match statement here
     
-    async def send(self, data):
+    def send(self, data):
         encoded = data.encode()
         self.s.sendall(encoded)
+    
+    def socket_loop(self):
+        while not self.signals.terminate:
+            self.start_listening()
