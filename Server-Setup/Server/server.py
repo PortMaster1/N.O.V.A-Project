@@ -65,10 +65,8 @@ async def chat():
 HOST = "192.168.12.138"
 PORT = 8080
 
-signals = signals.Signals
-
 class Server:
-    def __init__(self, HOST, PORT):
+    def __init__(self, HOST, PORT, signals):
         self._HOST = HOST
         self._PORT = PORT
         # Start Socket Server
