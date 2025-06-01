@@ -1,6 +1,6 @@
 import asyncio, requests
 # Testing Imports
-import asyncio, socket, signals
+import asyncio, socket
 
 # REST API URL of your LLM server
 IP = "192.168.12.138:8000"            # Update IP Address
@@ -20,12 +20,11 @@ async def send_states(x, y, z, tilt):
 HOST = "192.168.12.140"
 PORT = 8080
 
-signals = signals.Signals()
-
 class Client:
-    def __init__(self, HOST, PORT):
+    def __init__(self, HOST, PORT, signals):
         self._HOST = HOST
         self._PORT = PORT
+        self.signals = signals
         # Initialize Socket Server
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
