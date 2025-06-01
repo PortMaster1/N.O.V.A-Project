@@ -17,8 +17,8 @@ async def send_states(x, y, z, tilt):
 
 # Testing Starts Here
 
-HOST = "192.168.12.138"
-PORT = "8080"
+HOST = "192.168.12.140"
+PORT = 8080
 
 signals = signals.Signals()
 
