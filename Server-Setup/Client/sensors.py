@@ -5,6 +5,7 @@ from scipy.io.wavfile import write
 import pyttsx3
 import asyncio
 import requests
+from RealtimeSTT import AudioToTextRecorder
 from time import sleep
 
 # Initialize STT and TTS Engines
