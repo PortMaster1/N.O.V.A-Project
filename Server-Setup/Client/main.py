@@ -129,7 +129,8 @@ def main_loop(HOST, PORT):
     signals = Signals()
     client = Client(HOST, PORT, signals)
     
-    
+    # Start Threads
+    socket_thread = threading(client.socket_loop, daemon=True)
 
 if __name__ == "__main__":
     main_loop(HOST, PORT)
