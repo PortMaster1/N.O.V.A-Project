@@ -121,7 +121,7 @@ if __name__ == "__main__":
 load_env(overwrite = True)
 
 HOST = os.getenv("SOCKET_HOST")
-PORT = os.getenv("SOCKET_PORT")
+PORT = int(os.getenv("SOCKET_PORT"))
 
 
 
