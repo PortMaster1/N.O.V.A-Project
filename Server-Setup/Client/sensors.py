@@ -1,4 +1,4 @@
-import os, serial
+import os, serial, time
 from faster_whisper import WhisperModel
 import sounddevice as sd
 from scipy.io.wavfile import write
@@ -6,7 +6,7 @@ import pyttsx3
 import asyncio
 import requests
 from RealtimeSTT import AudioToTextRecorder
-from time import sleep
+
 
 # Initialize STT and TTS Engines
 model = WhisperModel("tiny", compute_type="int8")  # Use "tiny", "base", or "small" for speed
@@ -36,6 +36,46 @@ def speak(response_text, filename="response.wav"):
     engine.say(response_text)
     engine.runAndWait()
     #os.system(f"aplay {filename}" if os.name != 'nt' else f"start {filename}")
+
+
+
+### Delete
+def process_text(text):
+    print(text)
+
+if __name__ == '__main__':
+    print("Wait until it says 'speak now'")
+    recorder = AudioToTextRecorder()
+
+    while True:
+        recorder.text(process_text)
+### End Delete
+
+class STT:
+    def __init__(self, signals):
+        self.recorder = None
+        self.signals = signals
+        self.API = self.API(self)
+        self.enabled = True
+    
+    def process_text(self, text):
+        if not self.enabled:
+            return
+        print("STT OUTPUT: " + text)
+        self.signals.history.append({"role": "user", "content": tect})
+        self.signals.last_message_time = time.time()
+        if not self.signals.AI_speaking:
+            self.signals.new_message = True
+    
+    def recording_start(self):
+        self.signals.human_speaking = True
+
+    def recording_stop(self):
+        self.signals.human_speaking = False
+
+    def feed_audio(self, data):
+        self.recorder.feed_audio(data)
+
 
 class STT:
     def __init__(self, signals):
