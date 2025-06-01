@@ -2,7 +2,8 @@ import asyncio, requests, re
 from flask import Flask, request, jsonify, render_template
 from llm_system import *
 # Testing Imports
-import socket
+import asyncio, socket
+import signals
 
 # Set up functions because Python is weird
 """
@@ -60,6 +61,12 @@ async def chat():
     return render_template("index.html", chat_mem=chat_mem)
 
 # Start Testing Here:
+
+HOST = "192.168.12.138"
+PORT = 8080
+
+signals = signals.Signals
+
 class Server:
     def __init__(self, HOST, PORT):
         self._HOST = HOST
