@@ -7,6 +7,13 @@ from scipy.io.wavfile import write
 from dotenv import load_env
 import RPi.GPIO as GPIO
 
+# Testimg Imports Here:
+import asyncio
+# Class Imports
+from server import Client
+
+# End Testing Importa
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(17, GPIO.OUT)
 GPIO.setup(18, GPIO.OUT)
@@ -107,3 +114,5 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         GPIO.cleanup()
         print("Operation Terminated")
+
+# Testing Starts Here:
