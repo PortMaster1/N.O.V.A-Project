@@ -68,6 +68,7 @@ class Server:
     def __init__(self, HOST, PORT, signals):
         self._HOST = HOST
         self._PORT = PORT
+        self.signals = signals
         # Start Socket Server
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.bimd(HOST, PORT)
