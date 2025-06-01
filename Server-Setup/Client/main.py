@@ -8,9 +8,11 @@ from dotenv import load_env
 import RPi.GPIO as GPIO
 
 # Testimg Imports Here:
-import asyncio
+import threading, os
+from dotenv import load_env
 # Class Imports
 from server import Client
+from signals import Signals
 
 # End Testing Importa
 
@@ -116,3 +118,18 @@ if __name__ == "__main__":
         print("Operation Terminated")
 
 # Testing Starts Here:
+load_env(overwrite = True)
+
+HOST = os.getenv("SOCKET_HOST")
+PORT = os.getenv("SOCKET_PORT")
+
+
+
+def main_loop(HOST, PORT):
+    signals = Signals()
+    client = Client(HOST, PORT, signals)
+    
+    
+
+if __name__ == "__main__":
+    main_loop(HOST, PORT)
