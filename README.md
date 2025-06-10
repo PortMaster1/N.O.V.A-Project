@@ -3,6 +3,10 @@ The N.O.V.A. Project is a project about making a handheld robot that has a large
 It will use llama3 8B from Meta by use of [Ollama](https://github.com/ollama/ollama).
 
 > [!IMPORTANT]
+> This repository is unfinished due to not having the ability to make conscious AI.
+
+
+> [!IMPORTANT]
 > This repository is not complete and is stil in heavy development.
 > Run at your own risk!
 
