@@ -61,11 +61,13 @@ async def chat():
 
 # Start Testing Here:
 
-HOST = "192.168.12.138"
+HOST = "0.0.0.0"
 PORT = 8080
 
+URL = f"{HOST}:{PORT}"
+
 class Server:
-    def __init__(self, HOST, PORT, signals):
+    def __init__(self, HOST, PORT):
         self._HOST = HOST
         self._PORT = PORT
         self.signals = signals
