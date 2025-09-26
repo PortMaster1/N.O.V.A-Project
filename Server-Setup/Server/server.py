@@ -11,7 +11,7 @@ class Discord_Client:
 		self.signals = signals
 	
 	# Runs the client alltogether
-	async def run(self):
+	def run(self):
 		bot = discord.Bot()
 		connections = {}
 		
