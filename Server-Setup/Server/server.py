@@ -43,6 +43,19 @@ class Discord_Client:
 					await self.channel.typing()
 					await asyncio.sleep(10)
 		
+		async def message_waiter():
+			if self.signals.history = []:
+				message = ""
+			else:
+				message = self.signals.history[-1]
+			while not self.signals.terminate:
+				if self.signals.history[-1] != message:
+					message = self.signals.history[-1]
+					if not self.signals.AI_speaking:
+						await send_initial(message["content"])
+					else:
+						await send_message(message["content"])
+		
 		# Send the initial message for the response
 		async def send_initial(message):
 			self.signals.AI_speaking = True
@@ -52,7 +65,8 @@ class Discord_Client:
 		async def send_message(message):
 			await self.message.edit(message)
 		
-		# Create the start_typing task and start the bot
+		# Create the start_typing task, the message_waiter task, and start the bot
+		asyncio.create_task(message_waiter())
 		asyncio.create_task(start_typing())
 		bot.run("TOKEN", status="online")
 
